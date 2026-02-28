@@ -1,0 +1,98 @@
+{
+    "nav": {
+        "home": "Home",
+        "about": "About Us",
+        "services": "Services",
+        "projects": "Projects",
+        "hse": "HSE",
+        "equipment": "Equipment",
+        "team": "Team",
+        "partners": "Partners",
+        "reviews": "Reviews",
+        "tender": "For Tenders",
+        "contacts": "Contacts"
+    },
+    "cta": {
+        "estimate": "Calculate Estimate",
+        "quote": "Request Quote",
+        "whatsapp": "WhatsApp",
+        "call": "Call us",
+        "download": "Download",
+        "sendRequest": "Send Request",
+        "tenderDocs": "Tender Documents"
+    },
+    "hero": {
+        "title": "Construction and Installation for Oil & Gas and Industrial Facilities",
+        "subtitle": "Atyrau region • Tengiz • fields • projects across Kazakhstan"
+    },
+    "company": {
+        "name": "ZAK Trans",
+        "tagline": "Full-cycle construction company",
+        "phone": "+7 700 101 0660",
+        "email": "info@zaktrans.kz",
+        "addressAtyrau": "Atyrau, Syrym Datov st., Bldg 1",
+        "addressKulsary": "Office: Kulsary",
+        "bin": "220340003406"
+    },
+    "stats": {
+        "employees": "20",
+        "employeesLabel": "in-house employees",
+        "license": "Category 3",
+        "licenseLabel": "C&I License",
+        "iso": "ISO",
+        "isoLabel": "Certificate",
+        "guarantee": "Guarantee",
+        "guaranteeLabel": "for all types of work"
+    },
+    "services": {
+        "title": "Our Services",
+        "plumbing": {
+            "title": "Plumbing Systems",
+            "short": "Installation of water supply, sewerage, heating systems"
+        },
+        "welding": {
+            "title": "Welding Works",
+            "short": "Certified welders, all steel grades"
+        },
+        "turnkey": {
+            "title": "Turnkey Construction",
+            "short": "Dormitories, shift camps, industrial buildings"
+        },
+        "roads": {
+            "title": "Road Construction",
+            "short": "Highways, ramps, infrastructure"
+        },
+        "rvs": {
+            "title": "VSS Construction",
+            "short": "Vertical steel storage tanks 1000–2000 m³"
+        },
+        "pipelines": {
+            "title": "Oil Pipelines Construction",
+            "short": "Installation of process pipelines"
+        }
+    },
+    "form": {
+        "name": "Name / Company",
+        "phone": "Phone",
+        "email": "Email",
+        "serviceType": "Type of work",
+        "location": "Facility location",
+        "comment": "Comment",
+        "attachFile": "Attach specification / drawing (PDF, DOCX, JPG up to 30MB)",
+        "privacy": "I agree to the privacy policy",
+        "deadline": "Deadline",
+        "submit": "Submit Request",
+        "success": "Request sent! We will contact you within 2 hours.",
+        "required": "Required field",
+        "locations": {
+            "atyrau": "Atyrau",
+            "tengiz": "Tengiz",
+            "kulsary": "Kulsary",
+            "other": "Other field / region"
+        }
+    },
+    "footer": {
+        "rights": "All rights reserved",
+        "privacy": "Privacy Policy"
+    }
+}
