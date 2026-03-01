@@ -11,7 +11,7 @@ const serviceData: ServiceData = {
     id: "roads",
     title: "Строительство дорог",
     shortOffer: "Надежные подъездные пути для тяжеловесной техники круглый год.",
-    bgImage: "https://images.unsplash.com/photo-1541888086925-0c13dcced9f5?q=80&w=2670&auto=format&fit=crop",
+    bgImage: "https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=2670&auto=format&fit=crop",
     worksDone: [
         "Снятие растительного слоя и планировка",
         "Устройство насыпи земляного полотна",
@@ -43,11 +43,12 @@ const serviceData: ServiceData = {
     ]
 };
 
-export default function RoadsServicePage({
-    params: { locale },
+export default async function RoadsServicePage({
+    params,
 }: {
-    params: { locale: string };
+    params: Promise<{ locale: string }>;
 }) {
+    const { locale } = await params;
     setRequestLocale(locale);
 
     return <ServiceTemplate data={serviceData} />;

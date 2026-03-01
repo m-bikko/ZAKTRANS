@@ -16,11 +16,12 @@ const specialists = [
     { role: "Инженеры ПТО и прорабы", count: 3 },
 ];
 
-export default function TeamPage({
-    params: { locale },
+export default async function TeamPage({
+    params,
 }: {
-    params: { locale: string };
+    params: Promise<{ locale: string }>;
 }) {
+    const { locale } = await params;
     setRequestLocale(locale);
 
     return (
@@ -86,7 +87,7 @@ export default function TeamPage({
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {/* Large Item */}
                         <div className="col-span-2 row-span-2 relative aspect-square rounded-2xl overflow-hidden border border-border">
-                            <Image src="https://images.unsplash.com/photo-1541888086925-0c13dcced9f5?q=80&w=2670&auto=format&fit=crop" alt="Работники на объекте" fill className="object-cover" />
+                            <Image src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=2670&auto=format&fit=crop" alt="Работники на объекте" fill className="object-cover" />
                         </div>
                         {/* Small Items */}
                         <div className="relative aspect-square rounded-2xl overflow-hidden border border-border">
@@ -96,7 +97,7 @@ export default function TeamPage({
                             <Image src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2670&auto=format&fit=crop" alt="Инженер ПТО" fill className="object-cover" />
                         </div>
                         <div className="col-span-2 relative aspect-[2/1] rounded-2xl overflow-hidden border border-border">
-                            <Image src="https://images.unsplash.com/photo-1541888086925-0c13dcced9f5?q=80&w=2670&auto=format&fit=crop" alt="Бригада" fill className="object-cover" />
+                            <Image src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=2670&auto=format&fit=crop" alt="Бригада" fill className="object-cover" />
                         </div>
                     </div>
                 </div>

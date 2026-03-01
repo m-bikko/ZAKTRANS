@@ -35,11 +35,12 @@ const contactInfo = [
     }
 ];
 
-export default function ContactsPage({
-    params: { locale },
+export default async function ContactsPage({
+    params,
 }: {
-    params: { locale: string };
+    params: Promise<{ locale: string }>;
 }) {
+    const { locale } = await params;
     setRequestLocale(locale);
 
     return (

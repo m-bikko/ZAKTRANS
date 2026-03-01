@@ -8,11 +8,12 @@ export const metadata: Metadata = {
     description: "Политика конфиденциальности и обработки персональных данных ZAK Trans.",
 };
 
-export default function PrivacyPage({
-    params: { locale },
+export default async function PrivacyPage({
+    params,
 }: {
-    params: { locale: string };
+    params: Promise<{ locale: string }>;
 }) {
+    const { locale } = await params;
     setRequestLocale(locale);
 
     return (

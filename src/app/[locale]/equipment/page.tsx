@@ -15,7 +15,7 @@ const equipment = [
         name: "Caterpillar D6",
         type: "Бульдозер",
         purpose: "Земляные работы, снятие грунта, формирование насыпей",
-        image: "https://images.unsplash.com/photo-1541888086925-0c13dcced9f5?q=80&w=2670&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=2670&auto=format&fit=crop",
         available: true,
     },
     {
@@ -39,7 +39,7 @@ const equipment = [
         name: "Shacman F3000",
         type: "Самосвал 25т",
         purpose: "Перевозка ПГС, щебня, песка и вывоз грунта",
-        image: "https://images.unsplash.com/photo-1541888086925-0c13dcced9f5?q=80&w=2670&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=2670&auto=format&fit=crop",
         available: true,
     },
     {
@@ -60,11 +60,12 @@ const equipment = [
     }
 ];
 
-export default function EquipmentPage({
-    params: { locale },
+export default async function EquipmentPage({
+    params,
 }: {
-    params: { locale: string };
+    params: Promise<{ locale: string }>;
 }) {
+    const { locale } = await params;
     setRequestLocale(locale);
 
     return (

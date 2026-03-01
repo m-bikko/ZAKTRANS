@@ -11,7 +11,7 @@ const serviceData: ServiceData = {
     id: "turnkey-construction",
     title: "Строительство «под ключ»",
     shortOffer: "Берем на себя полный цикл: от земляных работ до ввода объекта в эксплуатацию.",
-    bgImage: "https://images.unsplash.com/photo-1541888086925-0c13dcced9f5?q=80&w=2670&auto=format&fit=crop",
+    bgImage: "https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=2670&auto=format&fit=crop",
     worksDone: [
         "Земляные работы и устройство фундаментов",
         "Монтаж металлоконструкций и сэндвич-панелей",
@@ -43,11 +43,12 @@ const serviceData: ServiceData = {
     ]
 };
 
-export default function TurnkeyServicePage({
-    params: { locale },
+export default async function TurnkeyServicePage({
+    params,
 }: {
-    params: { locale: string };
+    params: Promise<{ locale: string }>;
 }) {
+    const { locale } = await params;
     setRequestLocale(locale);
 
     return <ServiceTemplate data={serviceData} />;

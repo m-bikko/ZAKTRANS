@@ -17,7 +17,8 @@ export function generateStaticParams() {
 }
 
 // 2. Dynamic Metadata
-export function generateMetadata({ params: { slug, locale } }: { params: { slug: string, locale: string } }): Metadata {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string, locale: string }> }): Promise<Metadata> {
+    const { slug, locale } = await params;
     const project = PROJECTS.find((p) => p.slug === slug);
     if (!project) return { title: "Проект не найден" };
 
@@ -28,11 +29,12 @@ export function generateMetadata({ params: { slug, locale } }: { params: { slug:
 }
 
 // 3. Page Component
-export default function ProjectPage({
-    params: { slug, locale },
+export default async function ProjectPage({
+    params,
 }: {
-    params: { slug: string; locale: string };
+    params: Promise<{ slug: string; locale: string }>;
 }) {
+    const { slug, locale } = await params;
     setRequestLocale(locale);
 
     const project = PROJECTS.find((p) => p.slug === slug);

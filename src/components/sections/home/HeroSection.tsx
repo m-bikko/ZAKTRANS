@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
@@ -29,16 +28,8 @@ export default function HeroSection() {
 
     return (
         <section className="relative min-h-screen flex items-center overflow-hidden">
-            {/* Background Layer */}
-            <div className="absolute inset-0 z-0">
-                <Image
-                    src="https://images.unsplash.com/photo-1541888086925-0c13dcced9f5?q=80&w=2670&auto=format&fit=crop"
-                    alt="ZAK Trans Oil & Gas Construction"
-                    fill
-                    priority
-                    className="object-cover"
-                />
-            </div>
+            {/* Background Layer with base color */}
+            <div className="absolute inset-0 z-0 bg-bg-primary" />
 
             {/* Gradient Overlay */}
             <div
@@ -98,7 +89,7 @@ export default function HeroSection() {
                     {/* Right Side: Trust Block */}
                     <motion.div variants={itemVariants} className="w-full lg:w-[40%]">
                         <div className="bg-bg-card/80 backdrop-blur-sm border border-border shadow-card rounded-2xl p-6 lg:p-8">
-                            <div className="grid grid-cols-2 gap-px bg-border">
+                            <div className="grid grid-cols-2 gap-px">
                                 {/* Stat 1 */}
                                 <div className="bg-bg-card/80 backdrop-blur-sm p-4 sm:p-6 flex flex-col items-start justify-center rounded-tl-xl hover:bg-bg-elevated/80 transition-colors">
                                     <span className="font-mono text-4xl font-bold text-accent-blue">{stats("employees")}</span>

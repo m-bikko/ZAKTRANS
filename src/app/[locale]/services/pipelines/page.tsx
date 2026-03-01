@@ -43,11 +43,12 @@ const serviceData: ServiceData = {
     ]
 };
 
-export default function PipelinesServicePage({
-    params: { locale },
+export default async function PipelinesServicePage({
+    params,
 }: {
-    params: { locale: string };
+    params: Promise<{ locale: string }>;
 }) {
+    const { locale } = await params;
     setRequestLocale(locale);
 
     return <ServiceTemplate data={serviceData} />;

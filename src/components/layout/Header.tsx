@@ -49,11 +49,11 @@ export default function Header() {
                 <nav className="hidden md:flex col-span-7 justify-center items-center space-x-6">
                     <Link href="/about" className="text-sm hover:text-accent-blue transition-colors">{t("about")}</Link>
 
-                    <div className="relative group p-4 -m-4">
+                    <div className="relative group py-4">
                         <Link href="/services" className="text-sm hover:text-accent-blue transition-colors flex items-center">
                             {t("services")} <ChevronDown className="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" />
                         </Link>
-                        <div className="absolute top-full left-0 hidden group-hover:block pt-2 w-[500px] z-50">
+                        <div className="absolute top-[85%] left-0 hidden group-hover:block pt-2 w-[500px] z-50">
                             <div className="bg-bg-card shadow-xl border border-border p-4 rounded-xl grid grid-cols-2 gap-4">
                                 {services.map((svc) => (
                                     <Link key={svc.href} href={svc.href} className="text-sm hover:text-accent-blue transition-colors p-2 rounded-md hover:bg-bg-elevated block">

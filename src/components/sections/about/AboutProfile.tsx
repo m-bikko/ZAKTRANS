@@ -42,7 +42,7 @@ export default function AboutProfile() {
                     </div>
 
                     {/* Right Stats Grid */}
-                    <div className="grid grid-cols-2 gap-px bg-border rounded-2xl overflow-hidden border border-border">
+                    <div className="grid grid-cols-2 gap-px rounded-2xl overflow-hidden border border-border">
                         {stats.map((stat, i) => (
                             <motion.div
                                 key={i}

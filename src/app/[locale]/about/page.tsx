@@ -12,11 +12,12 @@ export const metadata: Metadata = {
         "ZAK Trans — строительная компания с лицензией 3 категории и ISO сертификатом. Работаем на нефтегазовых объектах Атырауской области и Тенгиза с 2022 года.",
 };
 
-export default function AboutPage({
-    params: { locale },
+export default async function AboutPage({
+    params,
 }: {
-    params: { locale: string };
+    params: Promise<{ locale: string }>;
 }) {
+    const { locale } = await params;
     setRequestLocale(locale);
 
     return (

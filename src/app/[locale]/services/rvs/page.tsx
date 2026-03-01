@@ -11,7 +11,7 @@ const serviceData: ServiceData = {
     id: "rvs",
     title: "Строительство РВС",
     shortOffer: "Резервуарные парки под ключ: от фундамента до антикоррозийной защиты.",
-    bgImage: "https://images.unsplash.com/photo-1541888086925-0c13dcced9f5?q=80&w=2670&auto=format&fit=crop",
+    bgImage: "https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=2670&auto=format&fit=crop",
     worksDone: [
         "Устройство свайного и кольцевого фундамента",
         "Монтаж днища, стенки и крыши резервуара (рулон/полистовая сборка)",
@@ -43,11 +43,12 @@ const serviceData: ServiceData = {
     ]
 };
 
-export default function RVSServicePage({
-    params: { locale },
+export default async function RVSServicePage({
+    params,
 }: {
-    params: { locale: string };
+    params: Promise<{ locale: string }>;
 }) {
+    const { locale } = await params;
     setRequestLocale(locale);
 
     return <ServiceTemplate data={serviceData} />;

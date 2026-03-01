@@ -32,11 +32,12 @@ const principles = [
     }
 ];
 
-export default function HsePage({
-    params: { locale },
+export default async function HsePage({
+    params,
 }: {
-    params: { locale: string };
+    params: Promise<{ locale: string }>;
 }) {
+    const { locale } = await params;
     setRequestLocale(locale);
 
     return (
@@ -46,7 +47,7 @@ export default function HsePage({
             <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden border-b border-border">
                 <div
                     className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-20 filter grayscale mix-blend-overlay"
-                    style={{ backgroundImage: `url('https://images.unsplash.com/photo-1541888086925-0c13dcced9f5?q=80&w=2670&auto=format&fit=crop')` }}
+                    style={{ backgroundImage: `url('https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=2670&auto=format&fit=crop')` }}
                 />
                 <div className="absolute inset-0 z-0 bg-gradient-to-b from-bg-primary via-bg-primary/95 to-bg-secondary pointer-events-none" />
                 <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none z-[5]" />

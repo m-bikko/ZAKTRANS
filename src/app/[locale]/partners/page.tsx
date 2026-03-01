@@ -16,11 +16,12 @@ const partners = [
     { name: "Karachaganak Petroleum Operating", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/KPO_logo.svg/512px-KPO_logo.svg.png" },
 ];
 
-export default function PartnersPage({
-    params: { locale },
+export default async function PartnersPage({
+    params,
 }: {
-    params: { locale: string };
+    params: Promise<{ locale: string }>;
 }) {
+    const { locale } = await params;
     setRequestLocale(locale);
 
     return (

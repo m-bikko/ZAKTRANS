@@ -9,9 +9,9 @@ export const PROJECTS: Project[] = [
         year: 2024,
         duration: "3 месяца",
         volume: "2 км асфальтобетонного покрытия",
-        coverImage: "https://images.unsplash.com/photo-1541888086925-0c13dcced9f5?q=80&w=2670&auto=format&fit=crop",
+        coverImage: "https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=2670&auto=format&fit=crop",
         gallery: [
-            "https://images.unsplash.com/photo-1541888086925-0c13dcced9f5?q=80&w=2670&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=2670&auto=format&fit=crop",
             "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2670&auto=format&fit=crop",
         ],
         description: "Комплексное строительство подъездной автодороги для обеспечения бесперебойного доступа тяжелой спецтехники к новому административно-бытовому комплексу на месторождении Тенгиз.",
