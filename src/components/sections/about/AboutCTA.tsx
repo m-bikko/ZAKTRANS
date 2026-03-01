@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { ArrowRight, Phone } from "lucide-react";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
 import EstimateForm from "@/components/forms/EstimateForm";
 
 export default function AboutCTA() {
@@ -34,7 +34,7 @@ export default function AboutCTA() {
                         </DialogTrigger>
                         <DialogContent className="sm:max-w-[600px] bg-bg-secondary border-border p-0 overflow-hidden">
                             <div className="p-6 md:p-8 bg-gradient-to-br from-bg-elevated to-bg-card">
-                                <h2 className="font-heading text-2xl font-bold text-text-primary mb-2">Расчет стоимости работ</h2>
+                                <DialogTitle className="font-heading text-2xl font-bold text-text-primary mb-2">Расчет стоимости работ</DialogTitle>
                                 <p className="text-text-secondary mb-6">Заполните форму ниже, и мы подготовим для вас КП.</p>
                                 <EstimateForm />
                             </div>

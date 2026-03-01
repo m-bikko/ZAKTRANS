@@ -10,13 +10,7 @@ export default function AboutHero() {
     return (
         <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 overflow-hidden border-b border-border bg-bg-secondary">
             {/* Background Pattern */}
-            <div
-                className="absolute inset-0 z-0 opacity-[0.03]"
-                style={{
-                    backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-                    backgroundSize: '32px 32px'
-                }}
-            />
+            <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
             {/* Subtle Glow */}
             <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-accent-blue/10 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" />

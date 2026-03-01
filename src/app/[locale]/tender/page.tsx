@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { ChevronRight, Download, FileText, CheckCircle2, Building, Mail, Phone, MapPin } from "lucide-react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import EstimateForm from "@/components/forms/EstimateForm";
 
 // -- Mock Data --
@@ -232,6 +232,7 @@ export default function TenderPage() {
             {/* Document Lightbox */}
             <Dialog open={!!selectedDoc} onOpenChange={(open) => !open && setSelectedDoc(null)}>
                 <DialogContent className="max-w-4xl p-0 bg-transparent border-none shadow-none overflow-hidden h-[90vh]">
+                    <DialogTitle className="sr-only">Просмотр документа</DialogTitle>
                     {selectedDoc && (
                         <div className="relative w-full h-full">
                             <Image

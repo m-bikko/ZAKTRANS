@@ -20,6 +20,7 @@ export default function PrivacyPage({
 
             {/* Hero */}
             <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 border-b border-border bg-bg-primary">
+                <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
                 <div className="relative z-10 max-w-4xl mx-auto px-4 md:px-8 text-center text-text-primary">
                     <nav className="flex items-center justify-center text-sm font-medium text-text-muted mb-8">
                         <Link href="/" className="hover:text-accent-blue transition-colors">Главная</Link>

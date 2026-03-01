@@ -1,5 +1,6 @@
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 export default function Footer() {
     const t = useTranslations("footer");
@@ -14,8 +15,14 @@ export default function Footer() {
 
                     {/* Column 1 */}
                     <div className="flex flex-col space-y-6">
-                        <Link href="/" className="text-2xl font-heading font-bold tracking-wider text-text-primary">
-                            ZAK<span className="text-accent-blue">TRANS</span>
+                        <Link href="/" className="inline-flex items-center hover:opacity-80 transition-opacity">
+                            <Image
+                                src="/bw logo.svg"
+                                alt="ZAK Trans"
+                                width={180}
+                                height={45}
+                                className="h-10 w-auto object-contain"
+                            />
                         </Link>
                         <p className="text-sm text-text-secondary leading-relaxed">
                             {coy("tagline")}
@@ -52,8 +59,7 @@ export default function Footer() {
                     {/* Column 4 */}
                     <div className="flex flex-col space-y-4">
                         <h4 className="text-sm font-semibold uppercase tracking-wider text-text-primary mb-2">{nav("contacts")}</h4>
-                        <p className="text-sm text-text-secondary leading-relaxed">{coy("addressAtyrau")}</p>
-                        <p className="text-sm text-text-secondary leading-relaxed">{coy("addressKulsary")}</p>
+                        <p className="text-sm text-text-secondary leading-relaxed">{coy("addressMain")}</p>
                         <a href={`tel:${coy("phone").replace(/\s/g, '')}`} className="text-sm text-accent-blue hover:text-accent-blue-hover font-medium pt-2 block">
                             {coy("phone")}
                         </a>

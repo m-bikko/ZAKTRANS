@@ -49,6 +49,7 @@ export default function HsePage({
                     style={{ backgroundImage: `url('https://images.unsplash.com/photo-1541888086925-0c13dcced9f5?q=80&w=2670&auto=format&fit=crop')` }}
                 />
                 <div className="absolute inset-0 z-0 bg-gradient-to-b from-bg-primary via-bg-primary/95 to-bg-secondary pointer-events-none" />
+                <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none z-[5]" />
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 text-center">
                     <nav className="flex items-center justify-center text-sm font-medium text-text-muted mb-8">

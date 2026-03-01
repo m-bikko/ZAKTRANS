@@ -47,6 +47,7 @@ export default function ContactsPage({
 
             {/* 1. Page Hero */}
             <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 overflow-hidden border-b border-border bg-bg-primary">
+                <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-bg-secondary pointer-events-none opacity-50" />
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 text-center text-text-primary">
@@ -80,12 +81,12 @@ export default function ContactsPage({
                                 <MapPin className="w-10 h-10 text-accent-blue mb-6" />
                                 <h3 className="text-2xl font-bold text-text-primary mb-2">Главный офис</h3>
                                 <p className="text-text-secondary leading-relaxed mb-6">
-                                    РК, Атырауская обл., г. Атырау,<br />
-                                    ул. Сырым Датов, Корпус 1
+                                    г. Кульсары,<br />
+                                    ул. Туймеш Сабетова, 180а
                                 </p>
                                 <div className="flex items-center space-x-4">
                                     <a
-                                        href="https://2gis.kz/atyrau"
+                                        href="https://go.2gis.com/eJDQV"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="inline-flex items-center justify-center text-sm font-medium bg-bg-elevated border border-border hover:border-accent-blue/50 text-text-primary px-4 py-2 rounded-lg transition-colors"
@@ -125,9 +126,9 @@ export default function ContactsPage({
 
                             {/* Map Box */}
                             <div className="w-full h-[400px] bg-steel rounded-2xl border border-border overflow-hidden relative group">
-                                {/* Google Maps Embed iframe (Placeholder for real embed) */}
+                                {/* Map iframe */}
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d85603.62319047244!2d51.8596041!3d47.1130638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x41a2988168e37d57%3A0xc6cbbae18cd50fb2!2z0L_RgC4g0JDQsdGD0LvRhdCw0LnQuNGAINC10L3RkCwg0JDRgtGL0YDQsNGDIDExMDAwMiwg0JrQsNC30LDRhdGB0YLQsNC9!5e0!3m2!1sru!2skz!4v1700000000000!5m2!1sru!2skz"
+                                    src="https://maps.google.com/maps?q=46.952533,53.969613&z=16&output=embed"
                                     width="100%"
                                     height="100%"
                                     style={{ border: 0 }}
@@ -138,8 +139,8 @@ export default function ContactsPage({
                                 ></iframe>
 
                                 <div className="absolute bottom-4 left-4 bg-bg-card/90 backdrop-blur-sm border border-border p-4 rounded-xl shadow-lg pointer-events-none">
-                                    <div className="font-bold text-text-primary mb-1">Офис управления</div>
-                                    <div className="text-sm text-text-secondary">Кульсары: Производственная база</div>
+                                    <div className="font-bold text-text-primary mb-1">Главный офис</div>
+                                    <div className="text-sm text-text-secondary">г. Кульсары, ул. Туймеш Сабетова, 180а</div>
                                 </div>
                             </div>
 
@@ -158,6 +159,6 @@ export default function ContactsPage({
                 </div>
             </section>
 
-        </main>
+        </main >
     );
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link, usePathname, useRouter } from "@/i18n/routing";
 import { useTranslations, useLocale } from "next-intl";
 import { Menu, ChevronDown } from "lucide-react";
+import Image from "next/image";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 
 export default function Header() {
@@ -32,8 +33,15 @@ export default function Header() {
             <div className="w-full max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-12 items-center">
                 {/* Logo */}
                 <div className="col-span-10 md:col-span-2 flex items-center">
-                    <Link href="/" className="text-xl md:text-2xl font-heading font-bold tracking-wider hover:text-accent-blue transition-colors">
-                        ZAK<span className="text-accent-blue">TRANS</span>
+                    <Link href="/" className="flex items-center hover:opacity-80 transition-opacity">
+                        <Image
+                            src="/bw logo.svg"
+                            alt="ZAK Trans"
+                            width={160}
+                            height={40}
+                            className="h-8 md:h-10 w-auto object-contain"
+                            priority
+                        />
                     </Link>
                 </div>
 
@@ -89,31 +97,35 @@ export default function Header() {
                             </SheetTrigger>
                             <SheetContent className="bg-bg-card border-l-border overflow-y-auto">
                                 <SheetTitle className="sr-only">Mobile Menu</SheetTitle>
-                                <div className="flex flex-col space-y-6 mt-6">
-                                    <div className="flex space-x-4 border-b border-border pb-4">
+                                <div className="flex flex-col space-y-2 px-2 mt-6 pb-20">
+                                    <div className="flex space-x-4 border-b border-border pb-6 px-4 mb-2">
                                         {["ru", "kz", "en"].map((l) => (
                                             <button
                                                 key={l}
                                                 onClick={() => { switchLocale(l); setIsOpen(false); }}
-                                                className={`text-lg uppercase ${locale === l ? 'text-accent-blue font-bold' : 'text-text-secondary'}`}
+                                                className={`text-lg uppercase ${locale === l ? 'text-accent-blue font-bold' : 'text-text-secondary hover:text-text-primary'}`}
                                             >
                                                 {l}
                                             </button>
                                         ))}
                                     </div>
 
-                                    <Link onClick={() => setIsOpen(false)} href="/about" className="text-lg">{t("about")}</Link>
-                                    <Link onClick={() => setIsOpen(false)} href="/services" className="text-lg">{t("services")}</Link>
-                                    <div className="pl-4 flex flex-col space-y-3 border-l border-border">
-                                        {services.map((svc) => (
-                                            <Link onClick={() => setIsOpen(false)} key={svc.href} href={svc.href} className="text-base text-text-secondary">{svc.label}</Link>
-                                        ))}
+                                    <Link onClick={() => setIsOpen(false)} href="/about" className="block text-lg py-3 px-4 rounded-xl hover:bg-bg-elevated transition-colors">{t("about")}</Link>
+
+                                    <div className="py-2">
+                                        <Link onClick={() => setIsOpen(false)} href="/services" className="block text-lg py-3 px-4 rounded-xl hover:bg-bg-elevated transition-colors font-semibold">{t("services")}</Link>
+                                        <div className="pl-8 flex flex-col space-y-1 mt-1 border-l-2 border-border/50 ml-4">
+                                            {services.map((svc) => (
+                                                <Link onClick={() => setIsOpen(false)} key={svc.href} href={svc.href} className="block text-base text-text-secondary py-2 px-4 hover:bg-bg-elevated hover:text-text-primary rounded-lg transition-colors">{svc.label}</Link>
+                                            ))}
+                                        </div>
                                     </div>
-                                    <Link onClick={() => setIsOpen(false)} href="/projects" className="text-lg">{t("projects")}</Link>
-                                    <Link onClick={() => setIsOpen(false)} href="/hse" className="text-lg">{t("hse")}</Link>
-                                    <Link onClick={() => setIsOpen(false)} href="/equipment" className="text-lg">{t("equipment")}</Link>
-                                    <Link onClick={() => setIsOpen(false)} href="/tender" className="text-lg text-accent-blue">{t("tender")}</Link>
-                                    <Link onClick={() => setIsOpen(false)} href="/contacts" className="text-lg">{t("contacts")}</Link>
+
+                                    <Link onClick={() => setIsOpen(false)} href="/projects" className="block text-lg py-3 px-4 rounded-xl hover:bg-bg-elevated transition-colors">{t("projects")}</Link>
+                                    <Link onClick={() => setIsOpen(false)} href="/hse" className="block text-lg py-3 px-4 rounded-xl hover:bg-bg-elevated transition-colors">{t("hse")}</Link>
+                                    <Link onClick={() => setIsOpen(false)} href="/equipment" className="block text-lg py-3 px-4 rounded-xl hover:bg-bg-elevated transition-colors">{t("equipment")}</Link>
+                                    <Link onClick={() => setIsOpen(false)} href="/tender" className="block text-lg py-3 px-4 rounded-xl hover:bg-bg-elevated transition-colors text-accent-blue font-medium">{t("tender")}</Link>
+                                    <Link onClick={() => setIsOpen(false)} href="/contacts" className="block text-lg py-3 px-4 rounded-xl hover:bg-bg-elevated transition-colors">{t("contacts")}</Link>
                                 </div>
                             </SheetContent>
                         </Sheet>

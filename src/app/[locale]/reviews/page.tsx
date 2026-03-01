@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { ChevronRight, Quote } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 const mockReviews = [
     {
@@ -71,8 +71,9 @@ export default function ReviewsPage() {
         <main className="w-full flex-1 flex flex-col min-h-screen bg-bg-secondary">
 
             {/* Hero */}
-            <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 border-b border-border bg-bg-primary">
-                <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-accent-blue/5 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" />
+            <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 overflow-hidden border-b border-border bg-bg-primary">
+                <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent-blue/10 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3 pointer-events-none" />
                 <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 text-center text-text-primary">
                     <nav className="flex items-center justify-center text-sm font-medium text-text-muted mb-8">
                         <Link href="/" className="hover:text-accent-blue transition-colors">Главная</Link>
@@ -161,6 +162,7 @@ export default function ReviewsPage() {
             {/* Lightbox Dialog for Letters */}
             <Dialog open={!!selectedLetter} onOpenChange={(open) => !open && setSelectedLetter(null)}>
                 <DialogContent className="max-w-4xl p-0 bg-transparent border-none shadow-none overflow-hidden h-[90vh]">
+                    <DialogTitle className="sr-only">Просмотр отзыва</DialogTitle>
                     {selectedLetter && (
                         <div className="relative w-full h-full">
                             <Image

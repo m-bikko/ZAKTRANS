@@ -29,9 +29,9 @@
         "name": "ZAK Trans",
         "tagline": "Full-cycle construction company",
         "phone": "+7 700 101 0660",
+        "whatsapp": "+7 700 101 0660",
         "email": "info@zaktrans.kz",
-        "addressAtyrau": "Atyrau, Syrym Datov st., Bldg 1",
-        "addressKulsary": "Office: Kulsary",
+        "addressMain": "Kulsary city, Tuymesh Sabetova st., 180a",
         "bin": "220340003406"
     },
     "stats": {
@@ -94,5 +94,11 @@
     "footer": {
         "rights": "All rights reserved",
         "privacy": "Privacy Policy"
+    },
+    "NotFound": {
+        "title": "Object Not Found",
+        "description": "The requested page was moved or deleted. Please check the URL.",
+        "home": "Go Home",
+        "contacts": "Contacts"
     }
 }

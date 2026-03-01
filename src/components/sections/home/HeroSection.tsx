@@ -48,6 +48,9 @@ export default function HeroSection() {
                 }}
             />
 
+            {/* Grid Pattern Layer */}
+            <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none z-[15]" />
+
             {/* Blue Vignette */}
             <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-blue to-transparent z-10 opacity-50" />
 

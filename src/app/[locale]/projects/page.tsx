@@ -42,6 +42,7 @@ export default function ProjectsCatalogPage() {
 
             {/* Hero */}
             <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 border-b border-border bg-bg-primary">
+                <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
                 <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-accent-blue/5 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" />
                 <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 text-center text-text-primary">
                     <nav className="flex items-center justify-center text-sm font-medium text-text-muted mb-8">
@@ -73,8 +74,8 @@ export default function ProjectsCatalogPage() {
                                     key={cat.id}
                                     onClick={() => setActiveCategory(cat.id)}
                                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === cat.id
-                                            ? "bg-accent-blue text-white shadow-md shadow-accent-blue/20"
-                                            : "bg-bg-card border border-border text-text-secondary hover:text-text-primary hover:border-accent-blue/50"
+                                        ? "bg-accent-blue text-white shadow-md shadow-accent-blue/20"
+                                        : "bg-bg-card border border-border text-text-secondary hover:text-text-primary hover:border-accent-blue/50"
                                         }`}
                                 >
                                     {cat.label}
@@ -90,8 +91,8 @@ export default function ProjectsCatalogPage() {
                                     key={loc.id}
                                     onClick={() => setActiveLocation(loc.id)}
                                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${activeLocation === loc.id
-                                            ? "bg-steel text-text-primary border border-border"
-                                            : "bg-transparent text-text-secondary hover:text-text-primary"
+                                        ? "bg-steel text-text-primary border border-border"
+                                        : "bg-transparent text-text-secondary hover:text-text-primary"
                                         }`}
                                 >
                                     {loc.label}

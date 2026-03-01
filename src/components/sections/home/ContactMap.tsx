@@ -24,19 +24,8 @@ export default function ContactMap() {
                                     <MapPin className="w-5 h-5 text-accent-blue" />
                                 </div>
                                 <div>
-                                    <h4 className="text-sm font-medium text-text-muted uppercase mb-1 tracking-wider">Центральный офис</h4>
-                                    <p className="text-text-primary text-lg">{c("addressAtyrau")}</p>
-                                </div>
-                            </div>
-
-                            {/* Address 2 */}
-                            <div className="flex items-start space-x-4">
-                                <div className="w-12 h-12 bg-bg-card border border-border rounded-xl flex items-center justify-center shrink-0">
-                                    <MapPin className="w-5 h-5 text-accent-blue" />
-                                </div>
-                                <div>
-                                    <h4 className="text-sm font-medium text-text-muted uppercase mb-1 tracking-wider">Филиал</h4>
-                                    <p className="text-text-primary text-lg">{c("addressKulsary")}</p>
+                                    <h4 className="text-sm font-medium text-text-muted uppercase mb-1 tracking-wider">Главный офис</h4>
+                                    <p className="text-text-primary text-lg">{c("addressMain")}</p>
                                 </div>
                             </div>
 
@@ -73,12 +62,13 @@ export default function ContactMap() {
                 {/* Map iframe */}
                 <div className="h-[400px] lg:h-auto min-h-[500px] w-full bg-border order-1 lg:order-2">
                     <iframe
-                        src="https://yandex.ru/map-widget/v1/?um=constructor%3A3251e1ba1f1bcfb4c27f9194ecdc8c2a3e0cecf8&amp;source=constructor"
+                        src="https://maps.google.com/maps?q=46.952533,53.969613&z=16&output=embed"
                         width="100%"
                         height="100%"
                         frameBorder="0"
                         className="w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
                         title="Офис ZAK Trans"
+                        loading="lazy"
                     ></iframe>
                 </div>
 
