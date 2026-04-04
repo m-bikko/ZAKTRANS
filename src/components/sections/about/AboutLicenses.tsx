@@ -13,6 +13,7 @@ export default function AboutLicenses() {
             number: "№ 23018241",
             date: "Бессрочная",
             description: "Дает право на выполнение полного комплекса строительно-монтажных работ.",
+            file: "/docs/license-smr.pdf",
         },
         {
             icon: ShieldCheck,
@@ -21,6 +22,7 @@ export default function AboutLicenses() {
             number: "Международный стандарт",
             date: "Ежегодный аудит",
             description: "Подтверждает высокое качество управления, экологическую безопасность и охрану труда.",
+            file: "/docs/zak-trans-9001-ru.pdf",
         }
     ];
 
@@ -69,10 +71,14 @@ export default function AboutLicenses() {
                                             <span className="text-xs text-text-muted uppercase tracking-wider mb-1">Номер документа:</span>
                                             <span className="font-mono text-sm text-text-primary">{l.number}</span>
                                         </div>
-                                        <button className="flex items-center space-x-2 text-accent-blue hover:text-white hover:bg-accent-blue border border-accent-blue/30 px-4 py-2 rounded-lg transition-colors text-sm font-medium">
+                                        <a
+                                            href={l.file}
+                                            download
+                                            className="flex items-center space-x-2 text-accent-blue hover:text-white hover:bg-accent-blue border border-accent-blue/30 px-4 py-2 rounded-lg transition-colors text-sm font-medium"
+                                        >
                                             <Download className="w-4 h-4" />
                                             <span>Скачать PDF</span>
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

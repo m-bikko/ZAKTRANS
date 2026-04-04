@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { Loader2 } from "lucide-react";
 import {
     Form,
     FormControl,
@@ -23,9 +25,24 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 
+const formatKzPhone = (value: string): string => {
+    const digits = value.replace(/\D/g, "").slice(0, 11);
+
+    if (digits.length === 0) return "";
+    if (digits.length <= 1) return `+${digits}`;
+    if (digits.length <= 4) return `+${digits[0]} (${digits.slice(1)}`;
+    if (digits.length <= 7) return `+${digits[0]} (${digits.slice(1, 4)}) ${digits.slice(4)}`;
+    if (digits.length <= 9) return `+${digits[0]} (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7)}`;
+    return `+${digits[0]} (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7, 9)}-${digits.slice(9, 11)}`;
+};
+
+const stripPhone = (value: string): string => value.replace(/\D/g, "");
+
 const formSchema = z.object({
     name: z.string().min(2, "Введите корректное имя или название компании"),
-    phone: z.string().regex(/^\+?[1-9]\d{9,14}$/, "Введите корректный номер телефона (например, +77001010660)"),
+    phone: z.string()
+        .transform(stripPhone)
+        .pipe(z.string().regex(/^7\d{10}$/, "Введите корректный номер (11 цифр, начиная с 7)")),
     email: z.string().email("Введите корректный email-адрес"),
     serviceType: z.string().min(1, "Выберите вид работ"),
     location: z.string().min(1, "Выберите локацию"),
@@ -36,6 +53,9 @@ const formSchema = z.object({
 });
 
 export default function EstimateForm() {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -49,11 +69,33 @@ export default function EstimateForm() {
         },
     });
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log("Form Values:", values);
-        // TODO: Implement API POST to /api/contact
-        alert("Заявка успешно отправлена! Мы свяжемся с вами в течение 2 часов.");
-        form.reset();
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        setIsSubmitting(true);
+        setSubmitStatus("idle");
+
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: values.name,
+                    phone: `+${values.phone}`,
+                    email: values.email,
+                    serviceType: values.serviceType,
+                    location: values.location,
+                    comment: values.comment,
+                }),
+            });
+
+            if (!response.ok) throw new Error("Failed to send");
+
+            setSubmitStatus("success");
+            form.reset();
+        } catch {
+            setSubmitStatus("error");
+        } finally {
+            setIsSubmitting(false);
+        }
     }
 
     return (
@@ -82,7 +124,21 @@ export default function EstimateForm() {
                             <FormItem>
                                 <FormLabel>Телефон *</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="+7 (___) ___-__-__" {...field} />
+                                    <Input
+                                        placeholder="+7 (700) 101-06-60"
+                                        type="tel"
+                                        inputMode="numeric"
+                                        value={field.value}
+                                        onChange={(e) => {
+                                            const formatted = formatKzPhone(e.target.value);
+                                            field.onChange(formatted);
+                                        }}
+                                        onFocus={(e) => {
+                                            if (!e.target.value) {
+                                                field.onChange("+7 (");
+                                            }
+                                        }}
+                                    />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -187,18 +243,40 @@ export default function EstimateForm() {
                                 />
                             </FormControl>
                             <div className="space-y-1 leading-none">
-                                <FormLabel className="text-sm font-normal text-text-secondary cursor-pointer">
-                                    Я согласен(на) на обработку персональных данных и принимаю условия политики конфиденциальности.
-                                </FormLabel>
+                                <label htmlFor="agreement" className="text-sm font-normal text-text-secondary cursor-pointer leading-relaxed">
+                                    Я согласен(на) на обработку персональных данных и принимаю условия <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-accent-blue hover:underline" onClick={(e) => e.stopPropagation()}>политики конфиденциальности</a>.
+                                </label>
                                 <FormMessage />
                             </div>
                         </FormItem>
                     )}
                 />
 
-                <Button type="submit" className="w-full h-12 bg-accent-blue hover:bg-accent-blue-hover text-white rounded-lg font-medium text-lg transition-colors">
-                    Отправить заявку
+                <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full h-12 bg-accent-blue hover:bg-accent-blue-hover text-white rounded-lg font-medium text-lg transition-colors disabled:opacity-50"
+                >
+                    {isSubmitting ? (
+                        <span className="flex items-center justify-center gap-2">
+                            <Loader2 className="w-5 h-5 animate-spin" />
+                            Отправка...
+                        </span>
+                    ) : (
+                        "Отправить заявку"
+                    )}
                 </Button>
+
+                {submitStatus === "success" && (
+                    <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-xl text-green-400 text-sm text-center">
+                        Заявка успешно отправлена! Мы свяжемся с вами в течение 2 часов.
+                    </div>
+                )}
+                {submitStatus === "error" && (
+                    <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm text-center">
+                        Ошибка отправки. Попробуйте ещё раз или позвоните нам: +7 700 101 0660
+                    </div>
+                )}
             </form>
         </Form>
     );
