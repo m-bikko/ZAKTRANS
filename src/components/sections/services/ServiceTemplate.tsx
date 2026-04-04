@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { ChevronRight, CheckCircle2 } from "lucide-react";
+import { ChevronRight, CheckCircle2, Loader2 } from "lucide-react";
 import EstimateForm from "@/components/forms/EstimateForm";
 import ProjectsPreview from "@/components/sections/home/ProjectsPreview";
 import {
@@ -27,6 +28,98 @@ export interface ServiceData {
 
 interface ServiceTemplateProps {
     data: ServiceData;
+}
+
+const formatKzPhone = (value: string): string => {
+    const digits = value.replace(/\D/g, "").slice(0, 11);
+    if (digits.length === 0) return "";
+    if (digits.length <= 1) return `+${digits}`;
+    if (digits.length <= 4) return `+${digits[0]} (${digits.slice(1)}`;
+    if (digits.length <= 7) return `+${digits[0]} (${digits.slice(1, 4)}) ${digits.slice(4)}`;
+    if (digits.length <= 9) return `+${digits[0]} (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7)}`;
+    return `+${digits[0]} (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7, 9)}-${digits.slice(9, 11)}`;
+};
+
+function QuickForm({ serviceTitle }: { serviceTitle: string }) {
+    const [name, setName] = useState("");
+    const [phone, setPhone] = useState("");
+    const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        const digits = phone.replace(/\D/g, "");
+        if (digits.length !== 11 || !digits.startsWith("7")) return;
+
+        setStatus("loading");
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name,
+                    phone: `+${digits}`,
+                    email: "-",
+                    serviceType: serviceTitle,
+                    location: "-",
+                    comment: `Быстрая заявка со страницы услуги: ${serviceTitle}`,
+                }),
+            });
+            if (!response.ok) throw new Error("Failed");
+            setStatus("success");
+            setName("");
+            setPhone("");
+        } catch {
+            setStatus("error");
+        }
+    };
+
+    return (
+        <div className="relative z-10">
+            <h3 className="text-xl font-bold text-text-primary mb-2">Оперативный расчет</h3>
+            <p className="text-sm text-text-secondary mb-6">Оставьте телефон для связи с инженером ПТО</p>
+            {status === "success" ? (
+                <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-xl text-green-400 text-sm text-center">
+                    Заявка отправлена! Мы перезвоним в течение 30 минут.
+                </div>
+            ) : (
+                <form className="space-y-4" onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        placeholder="Имя"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className="w-full bg-bg-elevated border border-border rounded-lg px-4 py-3 text-text-primary focus:border-accent-blue focus:ring-1 focus:ring-accent-blue outline-none transition-colors"
+                        required
+                    />
+                    <input
+                        type="tel"
+                        inputMode="numeric"
+                        placeholder="+7 (700) 101-06-60"
+                        value={phone}
+                        onChange={(e) => setPhone(formatKzPhone(e.target.value))}
+                        onFocus={() => { if (!phone) setPhone("+7 ("); }}
+                        className="w-full bg-bg-elevated border border-border rounded-lg px-4 py-3 text-text-primary focus:border-accent-blue focus:ring-1 focus:ring-accent-blue outline-none transition-colors"
+                        required
+                    />
+                    <button
+                        type="submit"
+                        disabled={status === "loading"}
+                        className="w-full bg-accent-blue hover:bg-accent-blue-hover text-white font-medium py-3 rounded-lg transition-colors disabled:opacity-50"
+                    >
+                        {status === "loading" ? (
+                            <span className="flex items-center justify-center gap-2">
+                                <Loader2 className="w-4 h-4 animate-spin" />
+                                Отправка...
+                            </span>
+                        ) : "Рассчитать стоимость"}
+                    </button>
+                    {status === "error" && (
+                        <p className="text-red-400 text-xs text-center">Ошибка отправки. Попробуйте ещё раз.</p>
+                    )}
+                </form>
+            )}
+        </div>
+    );
 }
 
 export default function ServiceTemplate({ data }: ServiceTemplateProps) {
@@ -69,27 +162,7 @@ export default function ServiceTemplate({ data }: ServiceTemplateProps) {
                         {/* Quick CTA Card */}
                         <div className="bg-bg-card border border-border p-8 rounded-2xl shadow-xl w-full lg:w-96 shrink-0 relative overflow-hidden group">
                             <div className="absolute inset-0 bg-gradient-to-b from-accent-blue/5 to-transparent pointer-events-none opacity-50 group-hover:opacity-100 transition-opacity" />
-                            <div className="relative z-10">
-                                <h3 className="text-xl font-bold text-text-primary mb-2">Оперативный расчет</h3>
-                                <p className="text-sm text-text-secondary mb-6">Оставьте телефон для связи с инженером ПТО</p>
-                                <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); alert("Заявка принята!"); }}>
-                                    <input
-                                        type="text"
-                                        placeholder="Имя"
-                                        className="w-full bg-bg-elevated border border-border rounded-lg px-4 py-3 text-text-primary focus:border-accent-blue focus:ring-1 focus:ring-accent-blue outline-none transition-colors"
-                                        required
-                                    />
-                                    <input
-                                        type="tel"
-                                        placeholder="+7 (___) ___-__-__"
-                                        className="w-full bg-bg-elevated border border-border rounded-lg px-4 py-3 text-text-primary focus:border-accent-blue focus:ring-1 focus:ring-accent-blue outline-none transition-colors"
-                                        required
-                                    />
-                                    <button type="submit" className="w-full bg-accent-blue hover:bg-accent-blue-hover text-white font-medium py-3 rounded-lg transition-colors">
-                                        Рассчитать стоимость
-                                    </button>
-                                </form>
-                            </div>
+                            <QuickForm serviceTitle={data.title} />
                         </div>
 
                     </div>
