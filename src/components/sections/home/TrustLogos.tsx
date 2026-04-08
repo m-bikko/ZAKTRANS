@@ -4,11 +4,8 @@ import Image from "next/image";
 
 export default function TrustLogos() {
     const logos = [
-        { name: "Maten Petroleum", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Maten_Petroleum.svg/200px-Maten_Petroleum.svg.png" }, // Mock URLs for now
-        { name: "АО Кожан", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Maten_Petroleum.svg/200px-Maten_Petroleum.svg.png" },
-        { name: "CCIP", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Maten_Petroleum.svg/200px-Maten_Petroleum.svg.png" },
-        { name: "ТОО Трансойл Терминал", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Maten_Petroleum.svg/200px-Maten_Petroleum.svg.png" },
-        { name: "ТОО ЕМГ Строй Сервис Атырау", src: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Maten_Petroleum.svg/200px-Maten_Petroleum.svg.png" },
+        { name: "ТОО Транс Ойл" },
+        { name: "CCIC" },
     ];
 
     return (

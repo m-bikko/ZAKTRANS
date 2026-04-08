@@ -3,7 +3,7 @@
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, Receipt, CheckCircle2, GraduationCap, Award, ShieldCheck, Factory } from "lucide-react";
 
 const containerVariants = {
     hidden: {},
@@ -24,7 +24,15 @@ const itemVariants = {
 export default function HeroSection() {
     const t = useTranslations("hero");
     const cta = useTranslations("cta");
-    const stats = useTranslations("stats");
+
+    const features = [
+        { icon: Receipt, title: "200 млн+", subtitle: "уплачено налогов" },
+        { icon: CheckCircle2, title: "100%", subtitle: "проектов сданы в срок" },
+        { icon: GraduationCap, title: "Тренинг-центр", subtitle: "собственный учебный центр" },
+        { icon: Award, title: "ISO", subtitle: "сертификаты качества" },
+        { icon: ShieldCheck, title: "Гарантия", subtitle: "на все виды работ" },
+        { icon: Factory, title: "Произв. база", subtitle: "собственная база" },
+    ];
 
     return (
         <section className="relative min-h-screen flex items-center overflow-hidden">
@@ -35,7 +43,7 @@ export default function HeroSection() {
             <div
                 className="absolute inset-0 z-10"
                 style={{
-                    background: "linear-gradient(to bottom, rgba(14,17,22,0.3) 0%, rgba(14,17,22,0.6) 40%, rgba(14,17,22,0.92) 85%, #0E1116 100%)"
+                    background: "linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(240,241,241,0.6) 40%, rgba(240,241,241,0.85) 85%, #F0F1F1 100%)"
                 }}
             />
 
@@ -76,7 +84,7 @@ export default function HeroSection() {
                         </motion.p>
 
                         <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mt-10">
-                            <button className="flex items-center bg-accent-blue hover:bg-accent-blue-hover text-text-primary px-8 py-4 rounded-full font-medium transition-all shadow-btn-glow group">
+                            <button className="flex items-center bg-accent-blue hover:bg-accent-blue-hover text-white px-8 py-4 rounded-full font-medium transition-all shadow-btn-glow group">
                                 {cta("estimate")}
                                 <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
                             </button>
@@ -86,30 +94,23 @@ export default function HeroSection() {
                         </motion.div>
                     </div>
 
-                    {/* Right Side: Trust Block */}
+                    {/* Right Side: Features Block */}
                     <motion.div variants={itemVariants} className="w-full lg:w-[40%]">
-                        <div className="bg-bg-card/80 backdrop-blur-sm border border-border shadow-card rounded-2xl p-6 lg:p-8">
-                            <div className="grid grid-cols-2 gap-px">
-                                {/* Stat 1 */}
-                                <div className="bg-bg-card/80 backdrop-blur-sm p-4 sm:p-6 flex flex-col items-start justify-center rounded-tl-xl hover:bg-bg-elevated/80 transition-colors">
-                                    <span className="font-mono text-4xl font-bold text-accent-blue">{stats("employees")}</span>
-                                    <span className="text-sm text-text-secondary mt-2 leading-tight">{stats("employeesLabel")}</span>
-                                </div>
-                                {/* Stat 2 */}
-                                <div className="bg-bg-card/80 backdrop-blur-sm p-4 sm:p-6 flex flex-col items-start justify-center rounded-tr-xl hover:bg-bg-elevated/80 transition-colors">
-                                    <span className="font-mono text-3xl font-bold text-accent-blue">{stats("license")}</span>
-                                    <span className="text-sm text-text-secondary mt-2 leading-tight">{stats("licenseLabel")}</span>
-                                </div>
-                                {/* Stat 3 */}
-                                <div className="bg-bg-card/80 backdrop-blur-sm p-4 sm:p-6 flex flex-col items-start justify-center rounded-bl-xl hover:bg-bg-elevated/80 transition-colors">
-                                    <span className="font-mono text-4xl font-bold text-accent-blue">{stats("iso")}</span>
-                                    <span className="text-sm text-text-secondary mt-2 leading-tight">{stats("isoLabel")}</span>
-                                </div>
-                                {/* Stat 4 */}
-                                <div className="bg-bg-card/80 backdrop-blur-sm p-4 sm:p-6 flex flex-col items-start justify-center rounded-br-xl hover:bg-bg-elevated/80 transition-colors">
-                                    <span className="font-mono text-xl sm:text-3xl font-bold text-accent-blue leading-tight block truncate uppercase">{stats("guarantee")}</span>
-                                    <span className="text-sm text-text-secondary mt-2 leading-tight">{stats("guaranteeLabel")}</span>
-                                </div>
+                        <div className="bg-bg-card backdrop-blur-sm border border-border shadow-card rounded-2xl p-4 lg:p-5">
+                            <div className="grid grid-cols-2 gap-3">
+                                {features.map((feature, i) => {
+                                    const Icon = feature.icon;
+                                    return (
+                                        <div
+                                            key={i}
+                                            className="bg-bg-elevated p-4 rounded-xl flex flex-col items-start hover:border-accent-blue/40 border border-transparent transition-colors"
+                                        >
+                                            <Icon className="w-6 h-6 text-accent-blue mb-2" />
+                                            <span className="font-heading text-lg font-bold text-text-primary leading-tight">{feature.title}</span>
+                                            <span className="text-xs text-text-secondary mt-1 leading-tight">{feature.subtitle}</span>
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     </motion.div>

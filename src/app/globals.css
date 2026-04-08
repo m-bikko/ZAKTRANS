@@ -72,16 +72,16 @@
   --color-error: var(--error);
 
   /* Gradients */
-  --background-image-gradient-dark: linear-gradient(180deg, #0E1116 0%, #12161C 100%);
-  --background-image-gradient-card: linear-gradient(135deg, #1A2030 0%, #12161C 100%);
-  --background-image-gradient-blue: linear-gradient(135deg, #1E4BFF 0%, #1538C7 100%);
-  --background-image-gradient-hero: linear-gradient(180deg, rgba(14,17,22,0.5) 0%, rgba(14,17,22,0.85) 100%);
+  --background-image-gradient-dark: linear-gradient(180deg, #FFFFFF 0%, #F0F1F1 100%);
+  --background-image-gradient-card: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 100%);
+  --background-image-gradient-blue: linear-gradient(135deg, #20B9EF 0%, #1580A8 100%);
+  --background-image-gradient-hero: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(240,241,241,0.85) 100%);
 
   /* Shadows */
-  --shadow-card: 0 0 0 1px rgba(255,255,255,0.08);
-  --shadow-card-hover: 0 0 0 1px rgba(30,75,255,0.3), 0 0 20px rgba(30,75,255,0.08);
-  --shadow-btn-glow: 0 0 20px rgba(30,75,255,0.4);
-  --shadow-blue-glow: 0 0 40px rgba(30,75,255,0.15);
+  --shadow-card: 0 1px 3px rgba(44,59,66,0.06), 0 0 0 1px rgba(44,59,66,0.06);
+  --shadow-card-hover: 0 4px 12px rgba(32,185,239,0.12), 0 0 0 1px rgba(32,185,239,0.3);
+  --shadow-btn-glow: 0 4px 14px rgba(32,185,239,0.35);
+  --shadow-blue-glow: 0 0 40px rgba(32,185,239,0.15);
 
   /* Animations */
   --animate-ticker: ticker 30s linear infinite;
@@ -104,58 +104,58 @@
 
 :root, .dark {
   --radius: 0.625rem;
-  
-  /* shadcn/ui colors (adapting to dark layout implicitly) */
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%); /* or rgba(255, 255, 255, 0.08) */
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
+
+  /* shadcn/ui colors — light theme */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.27 0.025 240);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.27 0.025 240);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.27 0.025 240);
+  --primary: oklch(0.27 0.025 240);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.27 0.025 240);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.27 0.025 240);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.27 0.025 240 / 12%);
+  --input: oklch(0.27 0.025 240 / 15%);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.27 0.025 240);
   --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.27 0.025 240);
+  --sidebar-border: oklch(0.27 0.025 240 / 12%);
+  --sidebar-ring: oklch(0.708 0 0);
 
-  /* ZAK Trans PRD CSS Tokens */
-  --bg-primary: #0E1116;
-  --bg-secondary: #12161C;
-  --bg-card: #1A2030;
-  --bg-elevated: #1E2535;
+  /* ZAK Trans Light Theme Tokens */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F0F1F1;
+  --bg-card: #FFFFFF;
+  --bg-elevated: #F8F9FA;
 
-  --accent-blue: #1E4BFF;
-  --accent-blue-hover: #2F63FF;
-  --accent-blue-dark: #1538C7;
-  --accent-blue-glow: rgba(30, 75, 255, 0.15);
+  --accent-blue: #20B9EF;
+  --accent-blue-hover: #1A9FCF;
+  --accent-blue-dark: #1580A8;
+  --accent-blue-glow: rgba(32, 185, 239, 0.15);
 
-  --steel: #2A313B;
-  --steel-light: #3A4455;
-  --border-accent: rgba(30, 75, 255, 0.3);
+  --steel: #E8ECED;
+  --steel-light: #D8DCE0;
+  --border-accent: rgba(32, 185, 239, 0.3);
 
-  --text-primary: #FFFFFF;
-  --text-secondary: #B7C0CC;
-  --text-muted: #6B7785;
+  --text-primary: #2C3B42;
+  --text-secondary: #556B78;
+  --text-muted: #8A9BA5;
 
   --success: #16C784;
   --error: #FF4444;

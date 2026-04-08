@@ -65,7 +65,7 @@ export default async function LocaleLayout({
     const messages = await getMessages();
 
     return (
-        <html lang={locale} className="dark">
+        <html lang={locale}>
             <body className={`${heading.variable} ${body.variable} ${mono.variable} bg-bg-primary text-text-primary font-body antialiased`}>
                 <NextIntlClientProvider messages={messages}>
                     <StickyBar />

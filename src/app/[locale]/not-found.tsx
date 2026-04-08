@@ -27,7 +27,7 @@ export default function NotFoundPage() {
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                     <Link
                         href="/"
-                        className="flex items-center justify-center space-x-2 w-full sm:w-auto bg-text-primary text-bg-primary px-8 py-4 rounded-full font-medium hover:bg-white transition-colors"
+                        className="flex items-center justify-center space-x-2 w-full sm:w-auto bg-accent-blue text-white px-8 py-4 rounded-full font-medium hover:bg-accent-blue-hover transition-colors"
                     >
                         <Home className="w-5 h-5" />
                         <span>{t("home", { fallback: "На главную" })}</span>

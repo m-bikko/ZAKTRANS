@@ -163,17 +163,9 @@ export default function TenderPage() {
 
                             <div className="flex flex-wrap gap-4">
                                 <a
-                                    href="/docs/recommendation-letter-1.pdf"
-                                    download
-                                    className="flex items-center space-x-2 bg-text-primary text-bg-primary px-6 py-3 rounded-full font-medium hover:bg-white transition-colors"
-                                >
-                                    <Download className="w-4 h-4" />
-                                    <span>{t("downloadPresentation")}</span>
-                                </a>
-                                <a
                                     href="/docs/state-registration.pdf"
                                     download
-                                    className="flex items-center space-x-2 bg-bg-elevated text-text-primary border border-border px-6 py-3 rounded-full font-medium hover:border-accent-blue/50 transition-colors"
+                                    className="flex items-center space-x-2 bg-accent-blue text-white px-6 py-3 rounded-full font-medium hover:bg-accent-blue-hover transition-colors"
                                 >
                                     <Download className="w-4 h-4" />
                                     <span>{t("downloadRequisites")}</span>

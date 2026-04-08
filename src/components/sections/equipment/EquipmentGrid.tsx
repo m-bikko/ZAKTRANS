@@ -60,7 +60,7 @@ const EquipmentGrid = ({ equipment }: EquipmentGridProps): React.JSX.Element => 
                                         {t("readyStatus")}
                                     </span>
                                 ) : (
-                                    <span className="px-3 py-1 bg-zinc-800/90 backdrop-blur-md text-white text-xs font-bold uppercase tracking-wider rounded-md shadow-lg border border-zinc-700">
+                                    <span className="px-3 py-1 bg-steel/95 backdrop-blur-md text-text-primary text-xs font-bold uppercase tracking-wider rounded-md shadow-lg border border-border">
                                         {t("onSiteStatus")}
                                     </span>
                                 )}

@@ -123,7 +123,7 @@ export default async function PartnersPage({
                     <p className="text-text-secondary leading-relaxed mb-8">
                         Мы всегда открыты к новым совместным проектам и консорциумам. Запросите презентацию компании для тендерного комитета.
                     </p>
-                    <Link href="/tender" className="inline-flex items-center space-x-2 bg-text-primary text-bg-primary px-8 py-4 rounded-full font-medium hover:bg-white transition-colors">
+                    <Link href="/tender" className="inline-flex items-center space-x-2 bg-accent-blue text-white px-8 py-4 rounded-full font-medium hover:bg-accent-blue-hover transition-colors">
                         <span>Запросить профиль компании</span>
                         <ArrowRight className="w-5 h-5" />
                     </Link>

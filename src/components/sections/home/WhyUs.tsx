@@ -25,7 +25,7 @@ export default function WhyUs() {
     const cta = useTranslations("cta");
 
     const advantages = [
-        { icon: CheckCircle, text: "20 профессиональных сотрудников в постоянном штате" },
+        { icon: CheckCircle, text: "50+ профессиональных сотрудников в постоянном штате" },
         { icon: Award, text: "Государственная лицензия СМР 3 категории и сертификаты ISO" },
         { icon: Clock, text: "Строгое соблюдение сроков — фиксируем обязательства в договоре" },
         { icon: FileText, text: "Работа по официальному договору с прозрачной сметой" },

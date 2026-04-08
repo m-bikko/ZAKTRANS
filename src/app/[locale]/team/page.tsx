@@ -110,7 +110,7 @@ export default async function TeamPage({
                     <p className="text-text-secondary leading-relaxed mb-8">
                         Мы готовы организовать выезд технического специалиста для оценки объемов работ и первичной консультации.
                     </p>
-                    <Link href="/contacts" className="inline-flex items-center space-x-2 bg-text-primary text-bg-primary px-8 py-4 rounded-full font-medium hover:bg-white transition-colors">
+                    <Link href="/contacts" className="inline-flex items-center space-x-2 bg-accent-blue text-white px-8 py-4 rounded-full font-medium hover:bg-accent-blue-hover transition-colors">
                         <span>Обсудить сотрудничество</span>
                         <ArrowRight className="w-5 h-5" />
                     </Link>
