@@ -35,7 +35,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             />
 
             {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-bg-primary via-bg-primary/50 to-transparent opacity-80 transition-opacity duration-300 group-hover:opacity-90" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent transition-opacity duration-300 group-hover:from-black/90" />
 
             {/* Content */}
             <div className="absolute inset-0 p-6 flex flex-col justify-end">
@@ -53,9 +53,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 </h3>
 
                 {/* Metadata */}
-                <div className="flex items-center text-sm text-text-muted space-x-2 mb-4">
+                <div className="flex items-center text-sm text-white/80 space-x-2 mb-4">
                     <span>{locLabels[project.location] || project.location}</span>
-                    <span className="w-1 h-1 rounded-full bg-border" />
+                    <span className="w-1 h-1 rounded-full bg-white/50" />
                     <span>{project.year}</span>
                 </div>
 

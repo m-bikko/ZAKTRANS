@@ -28,18 +28,18 @@ export const PROJECTS: Project[] = [
         featured: true,
     },
     {
-        slug: "atyrau-rvs-5000",
-        title: "Сборка и монтаж РВС-5000 м³",
+        slug: "atyrau-rvs-50-5000",
+        title: "Сборка и монтаж РВС 50-5000 м³",
         category: "rvs",
         location: "atyrau",
         year: 2023,
         duration: "4 месяца",
-        volume: "1 резервуар V=5000 м³",
+        volume: "Резервуары V=50-5000 м³",
         coverImage: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2670&auto=format&fit=crop",
         gallery: [
             "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2670&auto=format&fit=crop",
         ],
-        description: "Монтаж резервуара вертикального стального номинальным объемом 5000 кубических метров для хранения светлых нефтепродуктов рулонным методом.",
+        description: "Монтаж резервуаров вертикальных стальных объемом от 50 до 5000 кубических метров для хранения светлых нефтепродуктов рулонным методом.",
         worksDone: [
             "Монтаж днища и развертывание рулона стенки",
             "Сварка монтажных стыков (автоматическая сварка под флюсом)",
