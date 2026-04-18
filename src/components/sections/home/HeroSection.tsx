@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "@/i18n/routing";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown, Receipt, CheckCircle2, GraduationCap, Award, ShieldCheck, Factory } from "lucide-react";
@@ -36,14 +36,21 @@ export default function HeroSection() {
 
     return (
         <section className="relative min-h-screen flex items-center overflow-hidden">
-            {/* Background Layer with base color */}
-            <div className="absolute inset-0 z-0 bg-bg-primary" />
+            {/* Background Image */}
+            <Image
+                src="/hero-bg.webp"
+                alt="Строительно-монтажные работы"
+                fill
+                priority
+                quality={85}
+                className="object-cover z-0"
+            />
 
             {/* Gradient Overlay */}
             <div
                 className="absolute inset-0 z-10"
                 style={{
-                    background: "linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(240,241,241,0.6) 40%, rgba(240,241,241,0.85) 85%, #F0F1F1 100%)"
+                    background: "linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(240,241,241,0.5) 30%, rgba(240,241,241,0.88) 70%, #F0F1F1 100%)"
                 }}
             />
 
@@ -63,9 +70,9 @@ export default function HeroSection() {
                 >
                     {/* Left Side: Copy & CTAs */}
                     <div className="w-full lg:w-[60%] flex flex-col items-start text-left">
-                        <motion.div variants={itemVariants} className="flex items-center space-x-2 bg-accent-blue/10 border border-accent-blue/20 rounded-full px-3 py-1 mb-6">
+                        <motion.div variants={itemVariants} className="flex items-center space-x-2 bg-white/90 backdrop-blur-sm border border-accent-blue/30 rounded-full px-4 py-1.5 mb-6 shadow-sm">
                             <span className="w-2 h-2 rounded-full bg-accent-blue animate-pulse-blue" />
-                            <span className="text-xs md:text-sm text-accent-blue uppercase tracking-wider font-medium">
+                            <span className="text-xs md:text-sm text-accent-blue uppercase tracking-wider font-bold">
                                 {t("subtitle")}
                             </span>
                         </motion.div>
@@ -79,7 +86,7 @@ export default function HeroSection() {
                             ))}
                         </motion.h1>
 
-                        <motion.p variants={itemVariants} className="text-lg md:text-xl text-text-secondary mt-6 max-w-2xl leading-relaxed">
+                        <motion.p variants={itemVariants} className="text-lg md:text-xl text-text-primary/80 mt-6 max-w-2xl leading-relaxed font-medium">
                             Комплексные инфраструктурные решения от проектирования до сдачи объекта под ключ.
                         </motion.p>
 
@@ -88,7 +95,7 @@ export default function HeroSection() {
                                 {cta("estimate")}
                                 <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
                             </button>
-                            <button className="bg-transparent border border-border hover:border-text-secondary text-text-primary px-8 py-4 rounded-full font-medium transition-all">
+                            <button className="bg-white/80 backdrop-blur-sm border border-border hover:border-accent-blue text-text-primary px-8 py-4 rounded-full font-medium transition-all">
                                 {cta("quote")}
                             </button>
                         </motion.div>
