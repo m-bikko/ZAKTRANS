@@ -2,6 +2,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Metadata } from "next";
 import { Link } from "@/i18n/routing";
 import { ChevronRight, MapPin, Phone, Mail, Clock, MessageCircle, Navigation } from "lucide-react";
+import { BreadcrumbListJsonLd } from "@/components/seo/JsonLd";
 import EstimateForm from "@/components/forms/EstimateForm";
 import { LucideIcon } from "lucide-react";
 
@@ -54,6 +55,10 @@ export default async function ContactsPage({
 
     return (
         <main className="w-full flex-1 flex flex-col min-h-screen bg-bg-secondary">
+            <BreadcrumbListJsonLd items={[
+                { name: t("breadcrumbHome"), url: `https://zaktrans.kz/${locale}` },
+                { name: t("breadcrumbContacts"), url: `https://zaktrans.kz/${locale}/contacts` },
+            ]} />
 
             {/* 1. Page Hero */}
             <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 overflow-hidden border-b border-border bg-bg-primary">

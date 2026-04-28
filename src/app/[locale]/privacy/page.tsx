@@ -2,6 +2,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Metadata } from "next";
 import { Link } from "@/i18n/routing";
 import { ChevronRight, Shield } from "lucide-react";
+import { BreadcrumbListJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
     title: "Политика конфиденциальности | ZAK Trans",
@@ -19,6 +20,10 @@ export default async function PrivacyPage({
 
     return (
         <main className="w-full flex-1 flex flex-col min-h-screen bg-bg-secondary">
+            <BreadcrumbListJsonLd items={[
+                { name: t("breadcrumbHome"), url: `https://zaktrans.kz/${locale}` },
+                { name: t("breadcrumbPrivacy"), url: `https://zaktrans.kz/${locale}/privacy` },
+            ]} />
 
             {/* Hero */}
             <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 border-b border-border bg-bg-primary">

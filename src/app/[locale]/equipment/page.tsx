@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
 import { Link } from "@/i18n/routing";
 import { ChevronRight, ArrowRight, CheckCircle2 } from "lucide-react";
+import { BreadcrumbListJsonLd } from "@/components/seo/JsonLd";
 import EquipmentGrid from "@/components/sections/equipment/EquipmentGrid";
 
 export const metadata: Metadata = {
@@ -57,6 +58,10 @@ export default async function EquipmentPage({
 
     return (
         <main className="w-full flex-1 flex flex-col min-h-screen bg-bg-secondary">
+            <BreadcrumbListJsonLd items={[
+                { name: t("breadcrumbHome"), url: `https://zaktrans.kz/${locale}` },
+                { name: t("breadcrumbEquipment"), url: `https://zaktrans.kz/${locale}/equipment` },
+            ]} />
 
             {/* Hero */}
             <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden border-b border-border bg-bg-primary">

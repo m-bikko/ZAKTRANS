@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { BreadcrumbListJsonLd } from "@/components/seo/JsonLd";
 import { Link } from "@/i18n/routing";
 import { ChevronRight, Download, FileText, CheckCircle2, Building, Mail, Phone, ExternalLink, Globe } from "lucide-react";
 import EstimateForm from "@/components/forms/EstimateForm";
@@ -119,6 +120,7 @@ export default function TenderPage() {
         3: "ru",
     });
     const t = useTranslations("tender");
+    const locale = useLocale();
 
     const getDocTitle = (doc: DocumentItem): string => {
         if (doc.title.startsWith("tender.")) {
@@ -140,6 +142,10 @@ export default function TenderPage() {
 
     return (
         <main className="w-full flex-1 flex flex-col min-h-screen bg-bg-secondary">
+            <BreadcrumbListJsonLd items={[
+                { name: t("breadcrumbHome"), url: `https://zaktrans.kz/${locale}` },
+                { name: t("breadcrumbTender"), url: `https://zaktrans.kz/${locale}/tender` },
+            ]} />
 
             {/* 1. Page Hero */}
             <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 bg-bg-primary overflow-hidden border-b border-border">

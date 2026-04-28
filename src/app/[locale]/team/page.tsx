@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { ChevronRight, ArrowRight, CheckCircle2 } from "lucide-react";
+import { BreadcrumbListJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
     title: "Наша команда | ZAK Trans",
@@ -28,6 +29,10 @@ export default async function TeamPage({
 
     return (
         <main className="w-full flex-1 flex flex-col min-h-screen bg-bg-secondary">
+            <BreadcrumbListJsonLd items={[
+                { name: t("breadcrumbHome"), url: `https://zaktrans.kz/${locale}` },
+                { name: t("breadcrumbTeam"), url: `https://zaktrans.kz/${locale}/team` },
+            ]} />
 
             {/* 1. Hero */}
             <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden border-b border-border bg-bg-primary">

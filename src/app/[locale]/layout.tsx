@@ -84,7 +84,12 @@ export default async function LocaleLayout({
         "name": "ZAK Trans",
         "legalName": "ТОО «ZAK Trans»",
         "url": "https://zaktrans.kz",
-        "logo": "https://zaktrans.kz/favicon_zak.svg",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://zaktrans.kz/logo-192.png",
+            "width": 192,
+            "height": 192,
+        },
         "image": "https://zaktrans.kz/og-image.jpg",
         "description": "Строительная компания полного цикла. СМР для нефтегазовых и промышленных объектов.",
         "foundingDate": "2022",

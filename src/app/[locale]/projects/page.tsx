@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { BreadcrumbListJsonLd } from "@/components/seo/JsonLd";
 import { Link } from "@/i18n/routing";
 import { ChevronRight } from "lucide-react";
 import { PROJECTS } from "@/lib/constants";
@@ -11,6 +12,7 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function ProjectsCatalogPage() {
     const t = useTranslations("projectsPage");
     const tNav = useTranslations("nav");
+    const locale = useLocale();
 
     const categories = [
         { id: "all", label: t("categoryAll") },
@@ -40,6 +42,10 @@ export default function ProjectsCatalogPage() {
 
     return (
         <main className="w-full flex-1 flex flex-col min-h-screen bg-bg-secondary">
+            <BreadcrumbListJsonLd items={[
+                { name: t("breadcrumbHome"), url: `https://zaktrans.kz/${locale}` },
+                { name: tNav("projects"), url: `https://zaktrans.kz/${locale}/projects` },
+            ]} />
 
             {/* Hero */}
             <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 border-b border-border bg-bg-primary">

@@ -13,6 +13,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion";
 import { motion } from "framer-motion";
+import { BreadcrumbListJsonLd, ServiceJsonLd } from "@/components/seo/JsonLd";
 
 export interface ServiceData {
     id: string;
@@ -127,8 +128,20 @@ export default function ServiceTemplate({ data }: ServiceTemplateProps) {
     const t = useTranslations("nav");
     const st = useTranslations("serviceTemplate");
 
+    const serviceUrl = `https://zaktrans.kz/ru/services/${data.id}`;
+
     return (
         <main className="w-full flex-1 flex flex-col bg-bg-secondary">
+            <BreadcrumbListJsonLd items={[
+                { name: st("breadcrumbHome"), url: "https://zaktrans.kz/ru" },
+                { name: t("services"), url: "https://zaktrans.kz/ru/services" },
+                { name: data.title, url: serviceUrl },
+            ]} />
+            <ServiceJsonLd
+                name={data.title}
+                description={data.shortOffer}
+                url={serviceUrl}
+            />
 
             {/* 1. Page Hero */}
             <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden border-b border-border">

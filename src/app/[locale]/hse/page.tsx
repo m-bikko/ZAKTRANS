@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { ChevronRight, ShieldCheck, HeartPulse, HardHat, FileText, ArrowRight } from "lucide-react";
+import { BreadcrumbListJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
     title: "HSE / Охрана труда и безопасность | ZAK Trans",
@@ -44,6 +45,10 @@ export default async function HsePage({
 
     return (
         <main className="w-full flex-1 flex flex-col min-h-screen bg-bg-secondary">
+            <BreadcrumbListJsonLd items={[
+                { name: t("breadcrumbHome"), url: `https://zaktrans.kz/${locale}` },
+                { name: "HSE", url: `https://zaktrans.kz/${locale}/hse` },
+            ]} />
 
             {/* 1. Page Hero */}
             <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden border-b border-border">

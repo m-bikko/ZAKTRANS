@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { BreadcrumbListJsonLd } from "@/components/seo/JsonLd";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { ChevronRight, Quote } from "lucide-react";
@@ -74,6 +75,7 @@ const mockReviews: ReviewItem[] = [
 
 export default function ReviewsPage() {
     const t = useTranslations("reviewsPage");
+    const locale = useLocale();
     const [activeCategory, setActiveCategory] = useState("all");
     const [selectedLetter, setSelectedLetter] = useState<string | null>(null);
 
@@ -90,6 +92,10 @@ export default function ReviewsPage() {
 
     return (
         <main className="w-full flex-1 flex flex-col min-h-screen bg-bg-secondary">
+            <BreadcrumbListJsonLd items={[
+                { name: t("breadcrumbHome"), url: `https://zaktrans.kz/${locale}` },
+                { name: t("breadcrumbReviews"), url: `https://zaktrans.kz/${locale}/reviews` },
+            ]} />
 
             {/* Hero */}
             <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 overflow-hidden border-b border-border bg-bg-primary">

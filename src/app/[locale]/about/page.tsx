@@ -1,5 +1,6 @@
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Metadata } from "next";
+import { BreadcrumbListJsonLd } from "@/components/seo/JsonLd";
 import AboutHero from "@/components/sections/about/AboutHero";
 import AboutProfile from "@/components/sections/about/AboutProfile";
 import AboutLicenses from "@/components/sections/about/AboutLicenses";
@@ -20,8 +21,14 @@ export default async function AboutPage({
     const { locale } = await params;
     setRequestLocale(locale);
 
+    const tNav = await getTranslations({ locale, namespace: "nav" });
+
     return (
         <main className="w-full flex-1 flex flex-col">
+            <BreadcrumbListJsonLd items={[
+                { name: tNav("home"), url: `https://zaktrans.kz/${locale}` },
+                { name: tNav("about"), url: `https://zaktrans.kz/${locale}/about` },
+            ]} />
             <AboutHero />
             <AboutProfile />
             <AboutLicenses />
