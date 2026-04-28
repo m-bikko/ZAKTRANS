@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
-const locales = ["ru", "kz", "en"];
-const BASE_URL = "https://zaktrans.kz"; // Assuming this is the production URL
+const locales = ["ru", "kz", "en"] as const;
+const BASE_URL = "https://zaktrans.kz";
 
 const routes = [
     "",
@@ -14,13 +14,11 @@ const routes = [
     "/services/rvs",
     "/services/pipelines",
     "/projects",
-    // Project slugs would ideally come from DB/CMS, but for this static version we use constants:
-    "/projects/road-kulsary-tengiz",
-    "/projects/rvs-20000",
-    "/projects/pipeline-15km",
-    "/projects/pnhz-construction",
-    "/projects/welding-dns",
-    "/projects/plumbing-pvp",
+    "/projects/tengiz-road-construction-2024",
+    "/projects/atyrau-rvs-50-5000",
+    "/projects/kulsary-pipeline-repair",
+    "/projects/tengiz-welding-metal-structures",
+    "/projects/atyrau-camp-plumbing",
     "/hse",
     "/equipment",
     "/team",
@@ -34,24 +32,22 @@ const routes = [
 export default function sitemap(): MetadataRoute.Sitemap {
     const entries: MetadataRoute.Sitemap = [];
 
-    for (const locale of locales) {
-        for (const route of routes) {
-            entries.push({
-                url: `${BASE_URL}/${locale}${route}`,
-                lastModified: new Date(),
-                changeFrequency: route === "" ? "weekly" : "monthly",
-                priority: route === "" ? 1.0 : route.includes("/services/") ? 0.9 : 0.7,
-            });
+    for (const route of routes) {
+        const alternates: Record<string, string> = {};
+        for (const locale of locales) {
+            const langKey = locale === "kz" ? "kk" : locale;
+            alternates[langKey] = `${BASE_URL}/${locale}${route}`;
         }
-    }
+        alternates["x-default"] = `${BASE_URL}/ru${route}`;
 
-    // Also push non-localized root url for standard parsers
-    entries.push({
-        url: BASE_URL,
-        lastModified: new Date(),
-        changeFrequency: "weekly",
-        priority: 1.0,
-    });
+        entries.push({
+            url: `${BASE_URL}/ru${route}`,
+            lastModified: new Date(),
+            changeFrequency: route === "" ? "weekly" : "monthly",
+            priority: route === "" ? 1.0 : route.includes("/services/") ? 0.9 : 0.7,
+            alternates: { languages: alternates },
+        });
+    }
 
     return entries;
 }
