@@ -221,11 +221,11 @@ export default function TenderPage() {
                                         </tr>
                                         <tr className="hover:bg-bg-elevated transition-colors">
                                             <th className="py-4 px-6 text-text-muted font-medium">{t("reqLegalAddress")}</th>
-                                            <td className="py-4 px-6 text-text-primary">РК, Атырауская обл., г. Атырау, пр-т Абулхаир Хана, строение 91 Коворкинг Center Infinity</td>
+                                            <td className="py-4 px-6 text-text-primary">{t("legalAddressValue")}</td>
                                         </tr>
                                         <tr className="hover:bg-bg-elevated transition-colors">
                                             <th className="py-4 px-6 text-text-muted font-medium">{t("reqActualAddress")}</th>
-                                            <td className="py-4 px-6 text-text-primary">РК, Атырауская обл., г. Атырау, ул. Сырым Датов, Корпус 1</td>
+                                            <td className="py-4 px-6 text-text-primary">{t("actualAddressValue")}</td>
                                         </tr>
                                         <tr className="hover:bg-bg-elevated transition-colors">
                                             <th className="py-4 px-6 text-text-muted font-medium">{t("reqDirector")}</th>

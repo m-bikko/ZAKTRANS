@@ -13,39 +13,6 @@ export const metadata: Metadata = {
 const BLUR_PLACEHOLDER =
     "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWExYTFhIi8+PC9zdmc+" as const;
 
-const equipment = [
-    {
-        id: 1,
-        name: "TOYOTA Hilux",
-        type: "Автомобиль",
-        licensePlate: "827 АFO 06",
-        purpose: "Служебный транспорт для доставки персонала и материалов на объект",
-        image: "/equipment/hilux.webp",
-        imageFull: "/equipment/hilux-full.webp",
-        available: true,
-    },
-    {
-        id: 2,
-        name: "FOTON BJ1128VEJEA-F2",
-        type: "Кран-манипулятор",
-        licensePlate: "717 AGR06",
-        purpose: "Погрузочно-разгрузочные работы, доставка крупногабаритных конструкций",
-        image: "/equipment/foton.webp",
-        imageFull: "/equipment/foton-full.webp",
-        available: true,
-    },
-    {
-        id: 3,
-        name: "Caterpillar 428F2",
-        type: "Экскаватор-погрузчик",
-        licensePlate: "APD 058 E",
-        purpose: "Копание траншей, погрузка сыпучих материалов, благоустройство территории",
-        image: "/equipment/caterpillar.webp",
-        imageFull: "/equipment/caterpillar-full.webp",
-        available: true,
-    },
-];
-
 export default async function EquipmentPage({
     params,
 }: {
@@ -54,6 +21,39 @@ export default async function EquipmentPage({
     const { locale } = await params;
     setRequestLocale(locale);
     const t = await getTranslations({ locale, namespace: "equipment" });
+
+    const equipment = [
+        {
+            id: 1,
+            name: "TOYOTA Hilux",
+            type: t("vehicleType"),
+            licensePlate: "827 АFO 06",
+            purpose: t("purposeHilux"),
+            image: "/equipment/hilux.webp",
+            imageFull: "/equipment/hilux-full.webp",
+            available: true,
+        },
+        {
+            id: 2,
+            name: "FOTON BJ1128VEJEA-F2",
+            type: t("craneManipulator"),
+            licensePlate: "717 AGR06",
+            purpose: t("purposeFooton"),
+            image: "/equipment/foton.webp",
+            imageFull: "/equipment/foton-full.webp",
+            available: true,
+        },
+        {
+            id: 3,
+            name: "Caterpillar 428F2",
+            type: t("excavatorLoader"),
+            licensePlate: "APD 058 E",
+            purpose: t("purposeCaterpillar"),
+            image: "/equipment/caterpillar.webp",
+            imageFull: "/equipment/caterpillar-full.webp",
+            available: true,
+        },
+    ];
 
     return (
         <main className="w-full flex-1 flex flex-col min-h-screen bg-bg-secondary">

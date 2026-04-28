@@ -23,6 +23,7 @@ const itemVariants = {
 
 export default function ServicesGrid() {
     const s = useTranslations("services");
+    const t = useTranslations("homeServices");
 
     const services = [
         {
@@ -78,14 +79,14 @@ export default function ServicesGrid() {
                     <div className="flex items-center space-x-2 mb-4">
                         <span className="w-8 h-px bg-accent-blue" />
                         <span className="text-accent-blue text-xs font-semibold tracking-widest uppercase">
-                            ЧТО МЫ ДЕЛАЕМ
+                            {t("tagline")}
                         </span>
                     </div>
                     <h2 className="font-heading text-4xl md:text-5xl font-bold text-text-primary mb-6">
                         {s("title")}
                     </h2>
                     <p className="text-text-secondary text-lg leading-relaxed">
-                        Полный комплекс строительно-монтажных работ для объектов промышленности и нефтегазовой отрасли с гарантией качества и соблюдением сроков.
+                        {t("description")}
                     </p>
                 </div>
 

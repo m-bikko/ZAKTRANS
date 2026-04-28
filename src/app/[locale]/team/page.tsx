@@ -1,4 +1,4 @@
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
@@ -9,13 +9,6 @@ export const metadata: Metadata = {
     description: "Квалифицированные специалисты, инженеры и рабочие — основа успеха ZAK Trans.",
 };
 
-const specialists = [
-    { role: "Аттестованные сварщики (НАКС)", count: 12 },
-    { role: "Монтажники технологических трубопроводов", count: 8 },
-    { role: "Операторы спецтехники 6-го разряда", count: 5 },
-    { role: "Инженеры ПТО и прорабы", count: 3 },
-];
-
 export default async function TeamPage({
     params,
 }: {
@@ -23,6 +16,15 @@ export default async function TeamPage({
 }) {
     const { locale } = await params;
     setRequestLocale(locale);
+
+    const t = await getTranslations({ locale, namespace: "teamPage" });
+
+    const specialists = [
+        { role: t("specialist1"), count: 12 },
+        { role: t("specialist2"), count: 8 },
+        { role: t("specialist3"), count: 5 },
+        { role: t("specialist4"), count: 3 },
+    ];
 
     return (
         <main className="w-full flex-1 flex flex-col min-h-screen bg-bg-secondary">
@@ -34,21 +36,21 @@ export default async function TeamPage({
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 text-center text-text-primary">
                     <nav className="flex items-center justify-center text-sm font-medium text-text-muted mb-8">
-                        <Link href="/" className="hover:text-accent-blue transition-colors">Главная</Link>
+                        <Link href="/" className="hover:text-accent-blue transition-colors">{t("breadcrumbHome")}</Link>
                         <ChevronRight className="w-4 h-4 mx-2" />
-                        <span className="text-text-primary">Команда</span>
+                        <span className="text-text-primary">{t("breadcrumbTeam")}</span>
                     </nav>
 
                     <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                        Главный актив — <span className="text-accent-blue">Люди</span>
+                        {t("titlePart1")} <span className="text-accent-blue">{t("titleHighlight")}</span>
                     </h1>
                     <p className="text-xl text-text-secondary max-w-3xl mx-auto mb-12">
-                        ZAK Trans — это слаженный механизм, где каждый сотрудник отвечает за финальный результат. Наш коллектив состоит из проверенных годами специалистов, знающих специфику работы на сложных нефтегазовых объектах.
+                        {t("description")}
                     </p>
 
                     <div className="inline-block p-8 bg-bg-card border border-border rounded-2xl shadow-xl">
-                        <div className="text-5xl lg:text-7xl font-mono font-bold text-accent-blue mb-2">20+</div>
-                        <div className="text-lg text-text-secondary font-medium uppercase tracking-wider">Штатных сотрудников</div>
+                        <div className="text-5xl lg:text-7xl font-mono font-bold text-accent-blue mb-2">{t("staffCount")}</div>
+                        <div className="text-lg text-text-secondary font-medium uppercase tracking-wider">{t("staffLabel")}</div>
                     </div>
                 </div>
             </section>
@@ -59,9 +61,9 @@ export default async function TeamPage({
 
                     {/* Section Header */}
                     <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-6">Профессиональный профиль</h2>
+                        <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-6">{t("profileTitle")}</h2>
                         <p className="text-text-secondary text-lg">
-                            Наша команда сбалансирована для оперативного решения комплексных задач. Мы инвестируем в сертификацию и допуски каждого сотрудника.
+                            {t("profileDescription")}
                         </p>
                     </div>
 
@@ -82,22 +84,22 @@ export default async function TeamPage({
             {/* 3. Photos (Mosaic) */}
             <section className="py-20 bg-bg-primary border-y border-border">
                 <div className="max-w-7xl mx-auto px-4 md:px-8">
-                    <h2 className="font-heading text-3xl font-bold text-text-primary mb-12">Команда в деле</h2>
+                    <h2 className="font-heading text-3xl font-bold text-text-primary mb-12">{t("photosTitle")}</h2>
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {/* Large Item */}
                         <div className="col-span-2 row-span-2 relative aspect-square rounded-2xl overflow-hidden border border-border">
-                            <Image src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=2670&auto=format&fit=crop" alt="Работники на объекте" fill className="object-cover" />
+                            <Image src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=2670&auto=format&fit=crop" alt={t("altMain")} fill className="object-cover" />
                         </div>
                         {/* Small Items */}
                         <div className="relative aspect-square rounded-2xl overflow-hidden border border-border">
-                            <Image src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2670&auto=format&fit=crop" alt="Сварщик за работой" fill className="object-cover" />
+                            <Image src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2670&auto=format&fit=crop" alt={t("altWelder")} fill className="object-cover" />
                         </div>
                         <div className="relative aspect-square rounded-2xl overflow-hidden border border-border">
-                            <Image src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2670&auto=format&fit=crop" alt="Инженер ПТО" fill className="object-cover" />
+                            <Image src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2670&auto=format&fit=crop" alt={t("altEngineer")} fill className="object-cover" />
                         </div>
                         <div className="col-span-2 relative aspect-[2/1] rounded-2xl overflow-hidden border border-border">
-                            <Image src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=2670&auto=format&fit=crop" alt="Бригада" fill className="object-cover" />
+                            <Image src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?q=80&w=2670&auto=format&fit=crop" alt={t("altBrigade")} fill className="object-cover" />
                         </div>
                     </div>
                 </div>
@@ -106,12 +108,12 @@ export default async function TeamPage({
             {/* 4. CTA */}
             <section className="py-24 text-center">
                 <div className="max-w-xl mx-auto px-4 md:px-8">
-                    <h2 className="font-heading text-3xl font-bold text-text-primary mb-6">Пригласите нас на объект</h2>
+                    <h2 className="font-heading text-3xl font-bold text-text-primary mb-6">{t("ctaTitle")}</h2>
                     <p className="text-text-secondary leading-relaxed mb-8">
-                        Мы готовы организовать выезд технического специалиста для оценки объемов работ и первичной консультации.
+                        {t("ctaDescription")}
                     </p>
                     <Link href="/contacts" className="inline-flex items-center space-x-2 bg-accent-blue text-white px-8 py-4 rounded-full font-medium hover:bg-accent-blue-hover transition-colors">
-                        <span>Обсудить сотрудничество</span>
+                        <span>{t("ctaButton")}</span>
                         <ArrowRight className="w-5 h-5" />
                     </Link>
                 </div>

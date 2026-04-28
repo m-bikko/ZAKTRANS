@@ -21,16 +21,16 @@ const itemVariants = {
 };
 
 export default function WhyUs() {
-    const t = useTranslations("whyUs");
+    const t = useTranslations("homeWhyUs");
     const cta = useTranslations("cta");
 
     const advantages = [
-        { icon: CheckCircle, text: "50+ профессиональных сотрудников в постоянном штате" },
-        { icon: Award, text: "Государственная лицензия СМР 3 категории и сертификаты ISO" },
-        { icon: Clock, text: "Строгое соблюдение сроков — фиксируем обязательства в договоре" },
-        { icon: FileText, text: "Работа по официальному договору с прозрачной сметой" },
-        { icon: Shield, text: "Безусловная гарантия на все выполненные строительно-монтажные работы" },
-        { icon: Truck, text: "Собственный парк современной спецтехники в идеальном состоянии" },
+        { icon: CheckCircle, text: t("advantage1") },
+        { icon: Award, text: t("advantage2") },
+        { icon: Clock, text: t("advantage3") },
+        { icon: FileText, text: t("advantage4") },
+        { icon: Shield, text: t("advantage5") },
+        { icon: Truck, text: t("advantage6") },
     ];
 
     return (
@@ -46,10 +46,10 @@ export default function WhyUs() {
                     {/* Left Side */}
                     <div className="w-full lg:w-[50%] flex flex-col justify-center">
                         <motion.h2 variants={itemVariants} className="font-heading text-4xl md:text-5xl font-bold text-text-primary mb-6">
-                            Почему выбирают ZAK Trans
+                            {t("title")}
                         </motion.h2>
                         <motion.p variants={itemVariants} className="text-text-secondary text-lg leading-relaxed mb-10">
-                            С 2022 года мы успешно реализуем проекты на ключевых нефтегазовых месторождениях Казахстана. Наш опыт, собственная техническая база и неукоснительное следование стандартам качества делают нас надежным партнером для вашего бизнеса.
+                            {t("description")}
                         </motion.p>
                         <motion.div variants={itemVariants}>
                             <button className="flex items-center text-text-primary font-medium hover:text-accent-blue transition-colors group bg-transparent border border-border px-8 py-4 rounded-full w-fit hover:border-accent-blue">

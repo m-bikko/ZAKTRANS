@@ -5,23 +5,25 @@ import { FileText, Download, ShieldCheck, Star } from "lucide-react";
 import { Link } from "@/i18n/routing";
 
 export default function AboutLicenses() {
+    const t = useTranslations("aboutLicenses");
+
     const licenses = [
         {
             icon: FileText,
-            title: "Государственная лицензия СМР",
-            category: "III Категория",
-            number: "№ 23018241",
-            date: "Бессрочная",
-            description: "Дает право на выполнение полного комплекса строительно-монтажных работ.",
+            title: t("license1Title"),
+            category: t("license1Category"),
+            number: t("license1Number"),
+            date: t("license1Date"),
+            description: t("license1Desc"),
             file: "/docs/license-smr.pdf",
         },
         {
             icon: ShieldCheck,
-            title: "Сертификация ISO",
-            category: "ISO 9001, ISO 14001",
-            number: "Международный стандарт",
-            date: "Ежегодный аудит",
-            description: "Подтверждает высокое качество управления, экологическую безопасность и охрану труда.",
+            title: t("license2Title"),
+            category: t("license2Category"),
+            number: t("license2Number"),
+            date: t("license2Date"),
+            description: t("license2Desc"),
             file: "/docs/zak-trans-9001-ru.pdf",
         }
     ];
@@ -32,10 +34,10 @@ export default function AboutLicenses() {
 
                 <div className="text-center max-w-2xl mx-auto mb-16">
                     <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-4">
-                        Лицензии и сертификаты
+                        {t("title")}
                     </h2>
                     <p className="text-text-secondary text-lg">
-                        Мы работаем в строгом соответствии с законодательством РК и международными отраслевыми стандартами надежности.
+                        {t("description")}
                     </p>
                 </div>
 
@@ -68,7 +70,7 @@ export default function AboutLicenses() {
 
                                     <div className="flex flex-col sm:flex-row gap-4 sm:items-center justify-between border-t border-border pt-6 mt-auto">
                                         <div className="flex flex-col">
-                                            <span className="text-xs text-text-muted uppercase tracking-wider mb-1">Номер документа:</span>
+                                            <span className="text-xs text-text-muted uppercase tracking-wider mb-1">{t("docNumberLabel")}</span>
                                             <span className="font-mono text-sm text-text-primary">{l.number}</span>
                                         </div>
                                         <a
@@ -77,7 +79,7 @@ export default function AboutLicenses() {
                                             className="flex items-center space-x-2 text-accent-blue hover:text-white hover:bg-accent-blue border border-accent-blue/30 px-4 py-2 rounded-lg transition-colors text-sm font-medium"
                                         >
                                             <Download className="w-4 h-4" />
-                                            <span>Скачать PDF</span>
+                                            <span>{t("downloadPdf")}</span>
                                         </a>
                                     </div>
                                 </div>
@@ -90,15 +92,15 @@ export default function AboutLicenses() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
                     <div className="flex items-center space-x-4 bg-bg-card p-6 rounded-xl border border-border">
                         <Star className="w-8 h-8 text-accent-blue shrink-0" />
-                        <span className="font-medium text-text-primary">Гарантия на все виды работ до 5 лет</span>
+                        <span className="font-medium text-text-primary">{t("guarantee1")}</span>
                     </div>
                     <div className="flex items-center space-x-4 bg-bg-card p-6 rounded-xl border border-border">
                         <ShieldCheck className="w-8 h-8 text-accent-blue shrink-0" />
-                        <span className="font-medium text-text-primary">Строгое соблюдение техники безопасности</span>
+                        <span className="font-medium text-text-primary">{t("guarantee2")}</span>
                     </div>
                     <div className="flex items-center space-x-4 bg-bg-card p-6 rounded-xl border border-border">
                         <FileText className="w-8 h-8 text-accent-blue shrink-0" />
-                        <span className="font-medium text-text-primary">Исполнительная документация "А-Я"</span>
+                        <span className="font-medium text-text-primary">{t("guarantee3")}</span>
                     </div>
                 </div>
 

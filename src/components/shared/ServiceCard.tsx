@@ -1,4 +1,7 @@
+"use client";
+
 import { LucideIcon, ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 
 interface ServiceCardProps {
@@ -9,6 +12,7 @@ interface ServiceCardProps {
 }
 
 export default function ServiceCard({ title, description, icon: Icon, href }: ServiceCardProps) {
+    const t = useTranslations("shared");
     return (
         <Link href={href} className="group block">
             <div className="bg-bg-card border border-border rounded-xl p-8 transition-all duration-300 hover:border-accent-blue/40 hover:-translate-y-1 hover:shadow-card-hover h-full flex flex-col">
@@ -27,8 +31,8 @@ export default function ServiceCard({ title, description, icon: Icon, href }: Se
 
                 <div className="flex items-center text-accent-blue text-sm font-medium mt-auto w-fit">
                     <span className="relative overflow-hidden">
-                        <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">Подробнее</span>
-                        <span className="inline-block absolute left-0 top-full transition-transform duration-300 group-hover:-translate-y-full">Подробнее</span>
+                        <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">{t("readMore")}</span>
+                        <span className="inline-block absolute left-0 top-full transition-transform duration-300 group-hover:-translate-y-full">{t("readMore")}</span>
                     </span>
                     <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
                 </div>

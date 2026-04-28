@@ -6,7 +6,8 @@ import { ChevronRight } from "lucide-react";
 import ServicesGrid from "@/components/sections/home/ServicesGrid";
 
 export default function ServicesCatalogPage() {
-    const t = useTranslations("nav");
+    const t = useTranslations("servicesPage");
+    const tNav = useTranslations("nav");
 
     return (
         <main className="w-full flex-1 flex flex-col">
@@ -19,17 +20,17 @@ export default function ServicesCatalogPage() {
                     <div className="flex flex-col items-center text-center">
 
                         <nav className="flex items-center text-sm font-medium text-text-muted mb-8">
-                            <Link href="/" className="hover:text-accent-blue transition-colors">Главная</Link>
+                            <Link href="/" className="hover:text-accent-blue transition-colors">{t("breadcrumbHome")}</Link>
                             <ChevronRight className="w-4 h-4 mx-2" />
-                            <span className="text-text-primary">{t("services")}</span>
+                            <span className="text-text-primary">{tNav("services")}</span>
                         </nav>
 
                         <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary tracking-tight mb-6">
-                            Наши услуги
+                            {t("title")}
                         </h1>
 
                         <p className="text-xl text-text-secondary max-w-3xl leading-relaxed">
-                            ZAK Trans предоставляет полный комплекс строительно-монтажных услуг для предприятий нефтегазового сектора. Мы гарантируем соблюдение сроков, высоких стандартов качества и строгих требований HSE.
+                            {t("description")}
                         </p>
 
                     </div>
@@ -44,15 +45,12 @@ export default function ServicesCatalogPage() {
             {/* SEO Bottom Text */}
             <section className="bg-bg-primary py-16 border-t border-border">
                 <div className="max-w-4xl mx-auto px-4 md:px-8 text-center text-text-secondary">
-                    <h2 className="text-2xl font-bold text-text-primary mb-4 font-heading">Опыт и технологии для сложных проектов</h2>
+                    <h2 className="text-2xl font-bold text-text-primary mb-4 font-heading">{t("seoTitle")}</h2>
                     <p className="leading-relaxed mb-4">
-                        Наша компания обладает собственной базой специализированной техники и штатом квалифицированных инженеров.
-                        Мы берем на себя ответственность за реализацию проектов любой сложности — от подготовки площадок и земляных работ
-                        до монтажа высокотехнологичного оборудования и сдачи объектов в эксплуатацию.
+                        {t("seoText1")}
                     </p>
                     <p className="leading-relaxed">
-                        Наличие государственной лицензии СМР 3 категории позволяет нам выполнять функции генерального подрядчика
-                        и обеспечивать полный цикл строительства с подготовкой всей необходимой исполнительной документации.
+                        {t("seoText2")}
                     </p>
                 </div>
             </section>

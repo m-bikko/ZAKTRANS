@@ -1,14 +1,17 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { CheckCircle2 } from "lucide-react";
 import EstimateForm from "@/components/forms/EstimateForm";
 
 export default function MainForm() {
+    const t = useTranslations("homeForm");
+
     const points = [
-        "Бесплатный расчет сметы",
-        "Работаем с ТЗ, чертежами и готовыми ведомостями",
-        "Официальный договор, полная материальная и гарантийная ответственность",
-        "Огромный опыт работы на Тенгизе и других месторождениях"
+        t("point1"),
+        t("point2"),
+        t("point3"),
+        t("point4"),
     ];
 
     return (
@@ -24,16 +27,16 @@ export default function MainForm() {
                         <div className="flex items-center space-x-2 mb-4">
                             <span className="w-8 h-px bg-accent-blue" />
                             <span className="text-accent-blue text-xs font-semibold tracking-widest uppercase">
-                                СОТРУДНИЧЕСТВО С НАМИ
+                                {t("tagline")}
                             </span>
                         </div>
 
                         <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 leading-tight">
-                            Рассчитаем стоимость <br />вашего объекта
+                            {t("title")} <br />{t("titleLineBreak")}
                         </h2>
 
                         <p className="text-xl text-text-secondary mb-10">
-                            Заполните форму, и мы свяжемся с вами в течение 2 часов для обсуждения деталей и подготовки КП.
+                            {t("description")}
                         </p>
 
                         <div className="space-y-6 mb-12">
@@ -47,7 +50,7 @@ export default function MainForm() {
 
                         <div className="bg-bg-elevated border border-border p-6 rounded-xl relative overflow-hidden group">
                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-shimmer" />
-                            <p className="text-sm text-text-muted mb-2 font-medium uppercase tracking-wider">Прямая связь по телефону</p>
+                            <p className="text-sm text-text-muted mb-2 font-medium uppercase tracking-wider">{t("phoneLabel")}</p>
                             <a href="tel:+77001010660" className="text-2xl font-bold text-text-primary hover:text-accent-blue transition-colors">
                                 +7 700 101-06-60
                             </a>

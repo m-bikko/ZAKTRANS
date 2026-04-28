@@ -2,9 +2,11 @@
 
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback } from "react";
+import { useTranslations } from "next-intl";
 import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function ReviewsSlider() {
+    const t = useTranslations("homeReviews");
     const [emblaRef, emblaApi] = useEmblaCarousel({
         loop: true,
         align: "center",
@@ -22,30 +24,30 @@ export default function ReviewsSlider() {
     const reviews = [
         {
             id: 1,
-            text: "Команда ZAK Trans продемонстрировала высокий профессионализм при строительстве резервуарного парка. Работы выполнены с опережением графика, качество сварных швов прошло 100% УЗК контроль без единого замечания. Рекомендуем как надежного генподрядчика.",
-            author: "Мухтар А.",
-            position: "Главный инженер, ТОО «МДМ-Сервис»",
+            text: t("review1Text"),
+            author: t("review1Author"),
+            position: t("review1Position"),
             initials: "МДМ",
         },
         {
             id: 2,
-            text: "Сотрудничаем с 2023 года по вопросам прокладки технологических трубопроводов. Отмечаем наличие квалифицированного персонала, собственной техники и строгое соблюдение требований ТБ и охраны труда на объектах повышенной опасности.",
-            author: "Серик Б.",
-            position: "Директор по кап. строительству",
+            text: t("review2Text"),
+            author: t("review2Author"),
+            position: t("review2Position"),
             initials: "ОМГ",
         },
         {
             id: 3,
-            text: "Выражаем благодарность за оперативное и качественное выполнение работ по устройству внутриплощадочных дорог. Все этапы, от земляных работ до укладки покрытия, выполнены в соответствии со СНиП.",
-            author: "Руслан Т.",
-            position: "Руководитель проекта",
+            text: t("review3Text"),
+            author: t("review3Author"),
+            position: t("review3Position"),
             initials: "TPI",
         },
         {
             id: 4,
-            text: "Отличная работа по монтажу систем водоотведения на нашем новом объекте. Инженеры компании учли все особенности рельефа и предложили оптимальное техническое решение. Гарантия по договору соблюдается.",
-            author: "Ержан К.",
-            position: "Технический директор",
+            text: t("review4Text"),
+            author: t("review4Author"),
+            position: t("review4Position"),
             initials: "КМГ",
         },
     ];
@@ -57,7 +59,7 @@ export default function ReviewsSlider() {
                 <div className="flex flex-col md:flex-row justify-between items-end mb-12 lg:mb-16 gap-6">
                     <div className="max-w-xl">
                         <h2 className="font-heading text-4xl md:text-5xl font-bold text-text-primary">
-                            Отзывы заказчиков
+                            {t("title")}
                         </h2>
                     </div>
                     <div className="hidden md:flex space-x-2">

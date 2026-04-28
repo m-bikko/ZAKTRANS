@@ -10,6 +10,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 export default function Header() {
     const t = useTranslations("nav");
     const s = useTranslations("services");
+    const h = useTranslations("header");
     const locale = useLocale();
     const router = useRouter();
     const pathname = usePathname();
@@ -70,7 +71,7 @@ export default function Header() {
                     <Link href="/tender" className="text-sm hover:text-accent-blue transition-colors flex items-center">
                         {t("tender")}
                         <span className="ml-2 px-2 py-0.5 text-[10px] bg-accent-blue/20 text-accent-blue rounded-full border border-accent-blue/30 uppercase tracking-wide">
-                            Ключевая
+                            {h("tenderBadge")}
                         </span>
                     </Link>
                     <Link href="/contacts" className="text-sm hover:text-accent-blue transition-colors">{t("contacts")}</Link>

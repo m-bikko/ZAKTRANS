@@ -36,12 +36,12 @@ export default function Footer() {
                     {/* Column 2 */}
                     <div className="flex flex-col space-y-4">
                         <h4 className="text-sm font-semibold uppercase tracking-wider text-text-primary mb-2">{nav("services")}</h4>
-                        <Link href="/services/plumbing" className="text-sm text-text-secondary hover:text-accent-blue transition-colors">Сантехнические системы</Link>
-                        <Link href="/services/welding" className="text-sm text-text-secondary hover:text-accent-blue transition-colors">Сварочные работы</Link>
-                        <Link href="/services/turnkey-construction" className="text-sm text-text-secondary hover:text-accent-blue transition-colors">Строительство «под ключ»</Link>
-                        <Link href="/services/roads" className="text-sm text-text-secondary hover:text-accent-blue transition-colors">Строительство дорог</Link>
-                        <Link href="/services/rvs" className="text-sm text-text-secondary hover:text-accent-blue transition-colors">Строительство РВС</Link>
-                        <Link href="/services/pipelines" className="text-sm text-text-secondary hover:text-accent-blue transition-colors">Строительство нефтепроводов</Link>
+                        <Link href="/services/plumbing" className="text-sm text-text-secondary hover:text-accent-blue transition-colors">{t("servicesPlumbing")}</Link>
+                        <Link href="/services/welding" className="text-sm text-text-secondary hover:text-accent-blue transition-colors">{t("servicesWelding")}</Link>
+                        <Link href="/services/turnkey-construction" className="text-sm text-text-secondary hover:text-accent-blue transition-colors">{t("servicesTurnkey")}</Link>
+                        <Link href="/services/roads" className="text-sm text-text-secondary hover:text-accent-blue transition-colors">{t("servicesRoads")}</Link>
+                        <Link href="/services/rvs" className="text-sm text-text-secondary hover:text-accent-blue transition-colors">{t("servicesRvs")}</Link>
+                        <Link href="/services/pipelines" className="text-sm text-text-secondary hover:text-accent-blue transition-colors">{t("servicesPipelines")}</Link>
                     </div>
 
                     {/* Column 3 */}

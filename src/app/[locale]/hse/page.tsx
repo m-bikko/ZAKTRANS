@@ -1,4 +1,4 @@
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
@@ -9,29 +9,6 @@ export const metadata: Metadata = {
     description: "Политика в области охраны труда, промышленной безопасности и защиты окружающей среды.",
 };
 
-const principles = [
-    {
-        icon: ShieldCheck,
-        title: "Нулевой травматизм",
-        desc: "Наша главная цель — выполнение всех работ без происшествий и ущерба здоровью сотрудников.",
-    },
-    {
-        icon: HardHat,
-        title: "Обеспечение СИЗ",
-        desc: "100% обеспечение персонала современными сертифицированными средствами индивидуальной защиты.",
-    },
-    {
-        icon: HeartPulse,
-        title: "Регулярные медосмотры",
-        desc: "Ежедневный предсменный контроль и плановые медицинские осмотры для допуска к работам.",
-    },
-    {
-        icon: FileText,
-        title: "Обучение персонала",
-        desc: "Регулярное проведение инструктажей (ТБ, ПБ, ООС) и повышение квалификации ответственных лиц.",
-    }
-];
-
 export default async function HsePage({
     params,
 }: {
@@ -39,6 +16,31 @@ export default async function HsePage({
 }) {
     const { locale } = await params;
     setRequestLocale(locale);
+
+    const t = await getTranslations({ locale, namespace: "hsePage" });
+
+    const principles = [
+        {
+            icon: ShieldCheck,
+            title: t("principle1Title"),
+            desc: t("principle1Desc"),
+        },
+        {
+            icon: HardHat,
+            title: t("principle2Title"),
+            desc: t("principle2Desc"),
+        },
+        {
+            icon: HeartPulse,
+            title: t("principle3Title"),
+            desc: t("principle3Desc"),
+        },
+        {
+            icon: FileText,
+            title: t("principle4Title"),
+            desc: t("principle4Desc"),
+        }
+    ];
 
     return (
         <main className="w-full flex-1 flex flex-col min-h-screen bg-bg-secondary">
@@ -54,16 +56,16 @@ export default async function HsePage({
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 text-center">
                     <nav className="flex items-center justify-center text-sm font-medium text-text-muted mb-8">
-                        <Link href="/" className="hover:text-accent-blue transition-colors">Главная</Link>
+                        <Link href="/" className="hover:text-accent-blue transition-colors">{t("breadcrumbHome")}</Link>
                         <ChevronRight className="w-4 h-4 mx-2" />
                         <span className="text-text-primary">HSE</span>
                     </nav>
 
                     <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary tracking-tight mb-6 max-w-4xl mx-auto">
-                        Политика <span className="text-accent-blue">HSE</span>
+                        {t("title")} <span className="text-accent-blue">{t("titleHighlight")}</span>
                     </h1>
                     <p className="text-xl text-text-secondary max-w-2xl mx-auto">
-                        Охрана труда, промышленная безопасность и защита окружающей среды — наш фундамент при реализации каждого проекта.
+                        {t("description")}
                     </p>
                 </div>
             </section>
@@ -93,7 +95,7 @@ export default async function HsePage({
                             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border">
                                 <Image
                                     src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2670&auto=format&fit=crop"
-                                    alt="Инструктаж по технике безопасности"
+                                    alt={t("imageAlt")}
                                     fill
                                     className="object-cover"
                                 />
@@ -102,11 +104,11 @@ export default async function HsePage({
 
                         {/* Texts */}
                         <div className="w-full lg:w-1/2">
-                            <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-6">Культура безопасного производства</h2>
+                            <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-6">{t("cultureTitle")}</h2>
                             <div className="space-y-6 text-text-secondary text-lg leading-relaxed">
-                                <p>В TОО «ZAK Trans» внедрена и успешно функционирует система управления охраной труда и промышленной безопасностью (HSE), соответствующая передовым международным и казахстанским стандартам.</p>
-                                <p>Перед началом любых работ на объекте весь линейный персонал и ИТР проходят строгий инструктаж, детально разбирая план производства работ (ППР) и карты оценки рисков.</p>
-                                <p>Мы гордимся тем, что на ключевых объектах, таких как Тенгиз, статистика происшествий (LTI/TRIR) поддерживается на стабильно нулевом уровне.</p>
+                                <p>{t("cultureText1")}</p>
+                                <p>{t("cultureText2")}</p>
+                                <p>{t("cultureText3")}</p>
                             </div>
                         </div>
 
@@ -117,12 +119,12 @@ export default async function HsePage({
             {/* 4. CTA to Documents */}
             <section className="py-24 bg-bg-primary text-center">
                 <div className="max-w-3xl mx-auto px-4 md:px-8">
-                    <h2 className="font-heading text-3xl font-bold text-text-primary mb-6">Документация и сертификаты</h2>
+                    <h2 className="font-heading text-3xl font-bold text-text-primary mb-6">{t("docsTitle")}</h2>
                     <p className="text-lg text-text-secondary mb-10">
-                        Политика компании, сертификаты качества ISO 9001/14001, а также лицензии доступны в специальном разделе для тендерных комиссий.
+                        {t("docsDescription")}
                     </p>
                     <Link href="/tender" className="inline-flex items-center space-x-2 bg-accent-blue hover:bg-accent-blue-hover text-white px-8 py-4 rounded-full font-medium transition-colors">
-                        <span>Перейти к документам</span>
+                        <span>{t("docsLink")}</span>
                         <ArrowRight className="w-5 h-5" />
                     </Link>
                 </div>

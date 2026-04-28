@@ -8,25 +8,26 @@ import { PROJECTS } from "@/lib/constants";
 import ProjectCard from "@/components/shared/ProjectCard";
 import { motion, AnimatePresence } from "framer-motion";
 
-const categories = [
-    { id: "all", label: "Все проекты" },
-    { id: "roads", label: "Дороги" },
-    { id: "rvs", label: "РВС" },
-    { id: "pipelines", label: "Нефтепроводы" },
-    { id: "construction", label: "Строительство" },
-    { id: "welding", label: "Сварка" },
-    { id: "plumbing", label: "Сантехника" },
-];
-
-const locations = [
-    { id: "all", label: "Все локации" },
-    { id: "atyrau", label: "Атырау" },
-    { id: "tengiz", label: "Тенгиз" },
-    { id: "kulsary", label: "Кульсары" },
-];
-
 export default function ProjectsCatalogPage() {
-    const t = useTranslations("nav");
+    const t = useTranslations("projectsPage");
+    const tNav = useTranslations("nav");
+
+    const categories = [
+        { id: "all", label: t("categoryAll") },
+        { id: "roads", label: t("categoryRoads") },
+        { id: "rvs", label: t("categoryRvs") },
+        { id: "pipelines", label: t("categoryPipelines") },
+        { id: "construction", label: t("categoryConstruction") },
+        { id: "welding", label: t("categoryWelding") },
+        { id: "plumbing", label: t("categoryPlumbing") },
+    ];
+
+    const locations = [
+        { id: "all", label: t("locationAll") },
+        { id: "atyrau", label: t("locationAtyrau") },
+        { id: "tengiz", label: t("locationTengiz") },
+        { id: "kulsary", label: t("locationKulsary") },
+    ];
 
     const [activeCategory, setActiveCategory] = useState("all");
     const [activeLocation, setActiveLocation] = useState("all");
@@ -46,15 +47,15 @@ export default function ProjectsCatalogPage() {
                 <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-accent-blue/5 rounded-full blur-3xl -translate-y-1/2 pointer-events-none" />
                 <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 text-center text-text-primary">
                     <nav className="flex items-center justify-center text-sm font-medium text-text-muted mb-8">
-                        <Link href="/" className="hover:text-accent-blue transition-colors">Главная</Link>
+                        <Link href="/" className="hover:text-accent-blue transition-colors">{t("breadcrumbHome")}</Link>
                         <ChevronRight className="w-4 h-4 mx-2" />
-                        <span className="text-text-primary">{t("projects")}</span>
+                        <span className="text-text-primary">{tNav("projects")}</span>
                     </nav>
                     <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                        Реализованные проекты
+                        {t("title")}
                     </h1>
                     <p className="text-xl text-text-secondary max-w-2xl mx-auto">
-                        Ознакомьтесь с примерами выполненных строительно-монтажных работ на нефтегазовых объектах.
+                        {t("description")}
                     </p>
                 </div>
             </section>
@@ -68,7 +69,7 @@ export default function ProjectsCatalogPage() {
 
                         {/* Categories */}
                         <div className="flex flex-wrap items-center gap-2">
-                            <span className="text-sm font-medium text-text-muted uppercase tracking-wider mr-4">Направление:</span>
+                            <span className="text-sm font-medium text-text-muted uppercase tracking-wider mr-4">{t("filterDirection")}</span>
                             {categories.map((cat) => (
                                 <button
                                     key={cat.id}
@@ -85,7 +86,7 @@ export default function ProjectsCatalogPage() {
 
                         {/* Locations */}
                         <div className="flex flex-wrap items-center gap-2">
-                            <span className="text-sm font-medium text-text-muted uppercase tracking-wider mr-4">Локация:</span>
+                            <span className="text-sm font-medium text-text-muted uppercase tracking-wider mr-4">{t("filterLocation")}</span>
                             {locations.map((loc) => (
                                 <button
                                     key={loc.id}
@@ -128,13 +129,13 @@ export default function ProjectsCatalogPage() {
                                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-bg-card border border-border text-text-muted mb-4">
                                     <span className="text-2xl">🔍</span>
                                 </div>
-                                <h3 className="text-xl font-bold text-text-primary mb-2">Проекты не найдены</h3>
-                                <p className="text-text-secondary">Попробуйте изменить параметры фильтрации.</p>
+                                <h3 className="text-xl font-bold text-text-primary mb-2">{t("notFoundTitle")}</h3>
+                                <p className="text-text-secondary">{t("notFoundDescription")}</p>
                                 <button
                                     onClick={() => { setActiveCategory("all"); setActiveLocation("all"); }}
                                     className="mt-6 text-accent-blue hover:underline font-medium"
                                 >
-                                    Сбросить фильтры
+                                    {t("resetFilters")}
                                 </button>
                             </motion.div>
                         )}

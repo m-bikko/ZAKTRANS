@@ -1,24 +1,27 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { MapPin, Navigation, Truck } from "lucide-react";
 
 export default function AboutGeography() {
+    const t = useTranslations("aboutGeo");
+
     const regions = [
         {
-            name: "Атырау и Атырауская область",
-            desc: "Центральный офис и основная база. Реализация крупнейших проектов по строительству трубопроводов и монтажу инженерных систем.",
+            name: t("region1Name"),
+            desc: t("region1Desc"),
             icon: Navigation,
             highlight: true
         },
         {
-            name: "Месторождение Тенгиз (ТШО)",
-            desc: "Долгосрочные контракты на строительно-монтажные работы, включая сварку, монтаж ПМЛ и земляные работы в сложных условиях.",
+            name: t("region2Name"),
+            desc: t("region2Desc"),
             icon: MapPin,
             highlight: true
         },
         {
-            name: "Кульсары и Жылыойский район",
-            desc: "Наличие филиала и оперативной мобильной бригады для быстрого реагирования на запросы заказчиков.",
+            name: t("region3Name"),
+            desc: t("region3Desc"),
             icon: Truck,
             highlight: false
         }
@@ -30,10 +33,10 @@ export default function AboutGeography() {
 
                 <div className="text-center max-w-2xl mx-auto mb-16">
                     <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-4">
-                        География работ
+                        {t("title")}
                     </h2>
                     <p className="text-text-secondary text-lg">
-                        Мы обладаем необходимой базой и ресурсами для быстрой мобилизации на ключевые нефтегазовые объекты Западного Казахстана.
+                        {t("description")}
                     </p>
                 </div>
 
@@ -49,7 +52,7 @@ export default function AboutGeography() {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-blue opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-4 w-4 bg-accent-blue/50 border border-accent-blue"></span>
                             </span>
-                            <div className="absolute top-6 -left-4 text-xs font-bold text-accent-blue tracking-widest uppercase bg-bg-primary px-2 py-1 rounded shadow-lg border border-border">Атырау</div>
+                            <div className="absolute top-6 -left-4 text-xs font-bold text-accent-blue tracking-widest uppercase bg-bg-primary px-2 py-1 rounded shadow-lg border border-border">{t("mapLabelAtyrau")}</div>
                         </div>
 
                         <div className="absolute top-[45%] left-[38%]">
@@ -57,7 +60,7 @@ export default function AboutGeography() {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-blue opacity-50 animation-delay-500"></span>
                                 <span className="relative inline-flex rounded-full h-3 w-3 bg-accent-blue/50 border border-accent-blue"></span>
                             </span>
-                            <div className="absolute top-5 -left-2 text-xs font-bold text-text-primary tracking-wider bg-bg-primary px-2 py-1 rounded shadow-lg border border-border">Тенгиз</div>
+                            <div className="absolute top-5 -left-2 text-xs font-bold text-text-primary tracking-wider bg-bg-primary px-2 py-1 rounded shadow-lg border border-border">{t("mapLabelTengiz")}</div>
                         </div>
 
                         {/* Glow effect */}

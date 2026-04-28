@@ -41,6 +41,7 @@ const formatKzPhone = (value: string): string => {
 };
 
 function QuickForm({ serviceTitle }: { serviceTitle: string }) {
+    const t = useTranslations("serviceTemplate");
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -61,7 +62,7 @@ function QuickForm({ serviceTitle }: { serviceTitle: string }) {
                     email: "-",
                     serviceType: serviceTitle,
                     location: "-",
-                    comment: `Быстрая заявка со страницы услуги: ${serviceTitle}`,
+                    comment: `${t("quickFormCommentPrefix")} ${serviceTitle}`,
                 }),
             });
             if (!response.ok) throw new Error("Failed");
@@ -75,17 +76,17 @@ function QuickForm({ serviceTitle }: { serviceTitle: string }) {
 
     return (
         <div className="relative z-10">
-            <h3 className="text-xl font-bold text-text-primary mb-2">Оперативный расчет</h3>
-            <p className="text-sm text-text-secondary mb-6">Оставьте телефон для связи с инженером ПТО</p>
+            <h3 className="text-xl font-bold text-text-primary mb-2">{t("quickFormTitle")}</h3>
+            <p className="text-sm text-text-secondary mb-6">{t("quickFormDescription")}</p>
             {status === "success" ? (
                 <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-xl text-green-400 text-sm text-center">
-                    Заявка отправлена! Мы перезвоним в течение 30 минут.
+                    {t("quickFormSuccess")}
                 </div>
             ) : (
                 <form className="space-y-4" onSubmit={handleSubmit}>
                     <input
                         type="text"
-                        placeholder="Имя"
+                        placeholder={t("quickFormNamePlaceholder")}
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         className="w-full bg-bg-elevated border border-border rounded-lg px-4 py-3 text-text-primary focus:border-accent-blue focus:ring-1 focus:ring-accent-blue outline-none transition-colors"
@@ -109,12 +110,12 @@ function QuickForm({ serviceTitle }: { serviceTitle: string }) {
                         {status === "loading" ? (
                             <span className="flex items-center justify-center gap-2">
                                 <Loader2 className="w-4 h-4 animate-spin" />
-                                Отправка...
+                                {t("quickFormSubmitting")}
                             </span>
-                        ) : "Рассчитать стоимость"}
+                        ) : t("quickFormSubmit")}
                     </button>
                     {status === "error" && (
-                        <p className="text-red-400 text-xs text-center">Ошибка отправки. Попробуйте ещё раз.</p>
+                        <p className="text-red-400 text-xs text-center">{t("quickFormError")}</p>
                     )}
                 </form>
             )}
@@ -124,6 +125,7 @@ function QuickForm({ serviceTitle }: { serviceTitle: string }) {
 
 export default function ServiceTemplate({ data }: ServiceTemplateProps) {
     const t = useTranslations("nav");
+    const st = useTranslations("serviceTemplate");
 
     return (
         <main className="w-full flex-1 flex flex-col bg-bg-secondary">
@@ -143,7 +145,7 @@ export default function ServiceTemplate({ data }: ServiceTemplateProps) {
 
                         <div className="flex flex-col justify-center max-w-2xl">
                             <nav className="flex items-center text-sm font-medium text-text-muted mb-8">
-                                <Link href="/" className="hover:text-accent-blue transition-colors">Главная</Link>
+                                <Link href="/" className="hover:text-accent-blue transition-colors">{st("breadcrumbHome")}</Link>
                                 <ChevronRight className="w-4 h-4 mx-2" />
                                 <Link href="/services" className="hover:text-accent-blue transition-colors">{t("services")}</Link>
                                 <ChevronRight className="w-4 h-4 mx-2" />
@@ -173,7 +175,7 @@ export default function ServiceTemplate({ data }: ServiceTemplateProps) {
             <section className="py-20 lg:py-32 bg-bg-primary border-b border-border">
                 <div className="max-w-7xl mx-auto px-4 md:px-8">
                     <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-12 text-center lg:text-left">
-                        Виды выполняемых работ
+                        {st("worksDoneTitle")}
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {data.worksDone.map((work, i) => (
@@ -191,10 +193,10 @@ export default function ServiceTemplate({ data }: ServiceTemplateProps) {
                 <div className="max-w-7xl mx-auto px-4 md:px-8">
                     <div className="text-center max-w-2xl mx-auto mb-16">
                         <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-4">
-                            Типовые объекты
+                            {st("objectsTitle")}
                         </h2>
                         <p className="text-text-secondary text-lg">
-                            Опыт реализации инфраструктурных проектов на месторождениях и промышленных базах.
+                            {st("objectsDescription")}
                         </p>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -212,7 +214,7 @@ export default function ServiceTemplate({ data }: ServiceTemplateProps) {
             <section className="py-20 lg:py-32 bg-bg-primary border-b border-border">
                 <div className="max-w-7xl mx-auto px-4 md:px-8">
                     <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-16 text-center">
-                        Этапы взаимодействия
+                        {st("stagesTitle")}
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-8">
                         {data.stages.map((stage, i) => (
@@ -251,7 +253,7 @@ export default function ServiceTemplate({ data }: ServiceTemplateProps) {
             <section className="py-20 lg:py-32 bg-bg-primary border-b border-border">
                 <div className="max-w-3xl mx-auto px-4 md:px-8">
                     <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-12 text-center">
-                        Частые вопросы
+                        {st("faqTitle")}
                     </h2>
                     <Accordion type="single" collapsible className="w-full">
                         {data.faq.map((item, i) => (
@@ -279,8 +281,8 @@ export default function ServiceTemplate({ data }: ServiceTemplateProps) {
                     <div className="bg-bg-card border border-border rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-br from-accent-blue/5 to-transparent pointer-events-none" />
                         <div className="relative z-10 text-center mb-10">
-                            <h2 className="font-heading text-3xl font-bold text-text-primary mb-4">Оставить заявку</h2>
-                            <p className="text-text-secondary">Укажите вид работ, и мы свяжемся с вами в течение 2 часов.</p>
+                            <h2 className="font-heading text-3xl font-bold text-text-primary mb-4">{st("formTitle")}</h2>
+                            <p className="text-text-secondary">{st("formDescription")}</p>
                         </div>
                         <div className="relative z-10">
                             <EstimateForm />

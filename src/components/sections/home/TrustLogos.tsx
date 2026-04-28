@@ -1,6 +1,9 @@
 "use client";
 
+import { useTranslations } from "next-intl";
+
 export default function TrustLogos() {
+    const t = useTranslations("homeTrust");
     const logos = [
         { name: "ТОО Транс Ойл" },
         { name: "CCIC" },
@@ -12,7 +15,7 @@ export default function TrustLogos() {
         <section className="bg-bg-secondary border-y border-border py-8 overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 md:px-8 mb-6">
                 <h3 className="text-center text-text-muted text-sm uppercase tracking-widest font-medium">
-                    Нам доверяют
+                    {t("title")}
                 </h3>
             </div>
 

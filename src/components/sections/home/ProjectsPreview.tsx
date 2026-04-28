@@ -7,19 +7,21 @@ import ProjectCard from "@/components/shared/ProjectCard";
 import { ArrowRight } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+import { useTranslations } from "next-intl";
 import { PROJECTS } from "@/lib/constants";
 
-const categories = [
-    { id: "all", label: "Все проекты" },
-    { id: "roads", label: "Дороги" },
-    { id: "rvs", label: "РВС" },
-    { id: "pipelines", label: "Нефтепроводы" },
-    { id: "construction", label: "Строительство" },
-    { id: "welding", label: "Сварка" },
-];
-
 export default function ProjectsPreview() {
+    const t = useTranslations("homeProjects");
     const [activeCategory, setActiveCategory] = useState("all");
+
+    const categories = [
+        { id: "all", label: t("categoryAll") },
+        { id: "roads", label: t("categoryRoads") },
+        { id: "rvs", label: t("categoryRvs") },
+        { id: "pipelines", label: t("categoryPipelines") },
+        { id: "construction", label: t("categoryConstruction") },
+        { id: "welding", label: t("categoryWelding") },
+    ];
 
     const filteredProjects = activeCategory === "all"
         ? PROJECTS.slice(0, 6)
@@ -34,14 +36,14 @@ export default function ProjectsPreview() {
                     <div className="max-w-xl">
                         <div className="flex items-center space-x-2 mb-4">
                             <span className="w-8 h-px bg-accent-blue" />
-                            <span className="text-accent-blue text-xs font-semibold tracking-widest uppercase">КАК МЫ РАБОТАЕМ</span>
+                            <span className="text-accent-blue text-xs font-semibold tracking-widest uppercase">{t("tagline")}</span>
                         </div>
                         <h2 className="font-heading text-4xl md:text-5xl font-bold text-text-primary">
-                            Выполненные проекты
+                            {t("title")}
                         </h2>
                     </div>
                     <Link href="/projects" className="group hidden md:flex items-center text-text-secondary hover:text-accent-blue transition-colors font-medium">
-                        Все проекты
+                        {t("allProjects")}
                         <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
                     </Link>
                 </div>
@@ -82,7 +84,7 @@ export default function ProjectsPreview() {
                 {/* Mobile View All Button */}
                 <div className="mt-10 md:hidden flex justify-center">
                     <Link href="/projects" className="w-full flex justify-center items-center bg-bg-secondary border border-border hover:border-text-secondary text-text-primary px-8 py-4 rounded-full font-medium transition-all group">
-                        Смотреть все проекты
+                        {t("viewAll")}
                         <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
                     </Link>
                 </div>

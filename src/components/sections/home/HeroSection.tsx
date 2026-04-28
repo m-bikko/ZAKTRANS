@@ -23,15 +23,16 @@ const itemVariants = {
 
 export default function HeroSection() {
     const t = useTranslations("hero");
+    const th = useTranslations("homeHero");
     const cta = useTranslations("cta");
 
     const features = [
-        { icon: Receipt, title: "200 млн+", subtitle: "уплачено налогов" },
-        { icon: CheckCircle2, title: "100%", subtitle: "проектов сданы в срок" },
-        { icon: GraduationCap, title: "Тренинг-центр", subtitle: "собственный учебный центр" },
-        { icon: Award, title: "ISO", subtitle: "сертификаты качества" },
-        { icon: ShieldCheck, title: "Гарантия", subtitle: "на все виды работ" },
-        { icon: Factory, title: "Произв. база", subtitle: "собственная база" },
+        { icon: Receipt, title: th("feature1Title"), subtitle: th("feature1Subtitle") },
+        { icon: CheckCircle2, title: th("feature2Title"), subtitle: th("feature2Subtitle") },
+        { icon: GraduationCap, title: th("feature3Title"), subtitle: th("feature3Subtitle") },
+        { icon: Award, title: th("feature4Title"), subtitle: th("feature4Subtitle") },
+        { icon: ShieldCheck, title: th("feature5Title"), subtitle: th("feature5Subtitle") },
+        { icon: Factory, title: th("feature6Title"), subtitle: th("feature6Subtitle") },
     ];
 
     return (
@@ -39,7 +40,7 @@ export default function HeroSection() {
             {/* Background Image */}
             <Image
                 src="/hero-bg.webp"
-                alt="Строительно-монтажные работы"
+                alt={th("altBg")}
                 fill
                 priority
                 quality={85}
@@ -87,7 +88,7 @@ export default function HeroSection() {
                         </motion.h1>
 
                         <motion.p variants={itemVariants} className="text-lg md:text-xl text-text-primary/80 mt-6 max-w-2xl leading-relaxed font-medium">
-                            Комплексные инфраструктурные решения от проектирования до сдачи объекта под ключ.
+                            {th("descriptionText")}
                         </motion.p>
 
                         <motion.div variants={itemVariants} className="flex flex-wrap gap-4 mt-10">
@@ -132,7 +133,7 @@ export default function HeroSection() {
                 transition={{ delay: 1.5, duration: 1 }}
                 onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
             >
-                <span className="text-xs uppercase tracking-widest mb-2 font-medium">Наши заказчики</span>
+                <span className="text-xs uppercase tracking-widest mb-2 font-medium">{th("scrollLabel")}</span>
                 <ChevronDown className="w-5 h-5 animate-bounce" />
             </motion.div>
         </section>

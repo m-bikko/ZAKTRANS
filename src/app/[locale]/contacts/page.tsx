@@ -1,39 +1,21 @@
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Metadata } from "next";
 import { Link } from "@/i18n/routing";
 import { ChevronRight, MapPin, Phone, Mail, Clock, MessageCircle, Navigation } from "lucide-react";
 import EstimateForm from "@/components/forms/EstimateForm";
+import { LucideIcon } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "Контакты | ZAK Trans",
     description: "Свяжитесь с ZAK Trans. Главный офис в Атырау, производственная база в Кульсары.",
 };
 
-const contactInfo = [
-    {
-        icon: Phone,
-        title: "Телефон",
-        details: ["+7 700 101 0660", "+7 7122 12 34 56 (Офис)"],
-        action: { label: "Позвонить", href: "tel:+77001010660" }
-    },
-    {
-        icon: Mail,
-        title: "Email",
-        details: ["info@zaktrans.kz (Общие вопросы)", "tender@zaktrans.kz (Тендерный отдел)"],
-        action: { label: "Написать", href: "mailto:info@zaktrans.kz" }
-    },
-    {
-        icon: MessageCircle,
-        title: "Мессенджеры",
-        details: ["Оперативно отвечаем в рабочее время"],
-        action: { label: "Написать в WhatsApp", href: "https://wa.me/77001010660", primary: true }
-    },
-    {
-        icon: Clock,
-        title: "Режим работы офиса",
-        details: ["Пн-Пт: 09:00 - 18:00", "Сб-Вс: Выходной"],
-    }
-];
+interface ContactInfoItem {
+    icon: LucideIcon;
+    title: string;
+    details: string[];
+    action?: { label: string; href: string; primary?: boolean };
+}
 
 export default async function ContactsPage({
     params,
@@ -42,6 +24,33 @@ export default async function ContactsPage({
 }) {
     const { locale } = await params;
     setRequestLocale(locale);
+    const t = await getTranslations({ locale, namespace: "contactsPage" });
+
+    const contactInfo: ContactInfoItem[] = [
+        {
+            icon: Phone,
+            title: t("phoneTitle"),
+            details: [t("phoneMain"), t("phoneOffice")],
+            action: { label: t("callAction"), href: "tel:+77001010660" }
+        },
+        {
+            icon: Mail,
+            title: t("emailTitle"),
+            details: [t("emailGeneral"), t("emailTender")],
+            action: { label: t("writeAction"), href: "mailto:info@zaktrans.kz" }
+        },
+        {
+            icon: MessageCircle,
+            title: t("messengerTitle"),
+            details: [t("messengerInfo")],
+            action: { label: t("whatsappAction"), href: "https://wa.me/77001010660", primary: true }
+        },
+        {
+            icon: Clock,
+            title: t("scheduleTitle"),
+            details: [t("scheduleWeekday"), t("scheduleWeekend")],
+        }
+    ];
 
     return (
         <main className="w-full flex-1 flex flex-col min-h-screen bg-bg-secondary">
@@ -53,16 +62,16 @@ export default async function ContactsPage({
 
                 <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 text-center text-text-primary">
                     <nav className="flex items-center justify-center text-sm font-medium text-text-muted mb-8">
-                        <Link href="/" className="hover:text-accent-blue transition-colors">Главная</Link>
+                        <Link href="/" className="hover:text-accent-blue transition-colors">{t("breadcrumbHome")}</Link>
                         <ChevronRight className="w-4 h-4 mx-2" />
-                        <span className="text-text-primary">Контакты</span>
+                        <span className="text-text-primary">{t("breadcrumbContacts")}</span>
                     </nav>
 
                     <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-                        Свяжитесь с <span className="text-accent-blue">нами</span>
+                        {t("titlePart1")} <span className="text-accent-blue">{t("titleHighlight")}</span>
                     </h1>
                     <p className="text-xl text-text-secondary max-w-2xl mx-auto">
-                        Готовы обсудить ваш проект, ответить на вопросы и предложить оптимальные решения для строительства.
+                        {t("description")}
                     </p>
                 </div>
             </section>
@@ -80,10 +89,10 @@ export default async function ContactsPage({
                             <div className="bg-bg-card border border-border p-8 rounded-2xl relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-accent-blue/10 rounded-bl-full pointer-events-none transition-transform group-hover:scale-110" />
                                 <MapPin className="w-10 h-10 text-accent-blue mb-6" />
-                                <h3 className="text-2xl font-bold text-text-primary mb-2">Главный офис</h3>
+                                <h3 className="text-2xl font-bold text-text-primary mb-2">{t("mainOffice")}</h3>
                                 <p className="text-text-secondary leading-relaxed mb-6">
-                                    г. Кульсары,<br />
-                                    ул. Туймеш Сабетова, 180а
+                                    {t("addressLine1")}<br />
+                                    {t("addressLine2")}
                                 </p>
                                 <div className="flex items-center space-x-4">
                                     <a
@@ -140,16 +149,16 @@ export default async function ContactsPage({
                                 ></iframe>
 
                                 <div className="absolute bottom-4 left-4 bg-bg-card/90 backdrop-blur-sm border border-border p-4 rounded-xl shadow-lg pointer-events-none">
-                                    <div className="font-bold text-text-primary mb-1">Главный офис</div>
-                                    <div className="text-sm text-text-secondary">г. Кульсары, ул. Туймеш Сабетова, 180а</div>
+                                    <div className="font-bold text-text-primary mb-1">{t("mapLabel")}</div>
+                                    <div className="text-sm text-text-secondary">{t("mapAddress")}</div>
                                 </div>
                             </div>
 
                             {/* Embedded Form */}
                             <div className="bg-bg-primary border border-border rounded-2xl p-8 lg:p-12 shadow-sm">
-                                <h2 className="font-heading text-3xl font-bold text-text-primary mb-2">Напишите нам</h2>
+                                <h2 className="font-heading text-3xl font-bold text-text-primary mb-2">{t("formTitle")}</h2>
                                 <p className="text-text-secondary mb-8">
-                                    Оставьте свои контакты, и наш специалист свяжется с вами в течение рабочего дня.
+                                    {t("formDescription")}
                                 </p>
                                 <EstimateForm />
                             </div>

@@ -4,13 +4,13 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 
 export default function AboutProfile() {
-    const statsTranslations = useTranslations("stats");
+    const t = useTranslations("aboutProfile");
 
     const stats = [
-        { value: "2022", label: "Год основания" },
-        { value: "30+", label: "Проектов выполнено" },
-        { value: "20", label: "Профильных специалистов" },
-        { value: "4", label: "Региона присутствия" },
+        { value: t("stat1Value"), label: t("stat1Label") },
+        { value: t("stat2Value"), label: t("stat2Label") },
+        { value: t("stat3Value"), label: t("stat3Label") },
+        { value: t("stat4Value"), label: t("stat4Label") },
     ];
 
     return (
@@ -23,20 +23,20 @@ export default function AboutProfile() {
                         <div className="flex items-center space-x-2 mb-6">
                             <span className="w-8 h-px bg-accent-blue" />
                             <span className="text-accent-blue text-xs font-semibold tracking-widest uppercase">
-                                ИСТОРИЯ И МИССИЯ
+                                {t("tagline")}
                             </span>
                         </div>
 
                         <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-6">
-                            Строительство инфраструктуры для лидеров рынка
+                            {t("title")}
                         </h2>
 
                         <div className="space-y-6 text-text-secondary text-lg leading-relaxed">
                             <p>
-                                Компания ZAK Trans была основана в 2022 году. С первого дня нашей миссией стало предоставление полного комплекса строительно-монтажных услуг, отвечающих строгим международным отраслевым стандартам нефтегазового сектора.
+                                {t("text1")}
                             </p>
                             <p>
-                                Мы специализируемся на прокладке технологических трубопроводов, монтаже быстровозводимых зданий (АБК, общежития), строительстве РВС объемом до 20 000 м³ и устройстве внутрипромысловых автомобильных дорог. Наша техническая база позволяет нам оперативно мобилизоваться на новые месторождения.
+                                {t("text2")}
                             </p>
                         </div>
                     </div>

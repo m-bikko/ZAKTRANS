@@ -5,6 +5,7 @@ import { MapPin, Phone, Mail } from "lucide-react";
 
 export default function ContactMap() {
     const c = useTranslations("company");
+    const t = useTranslations("contactsPage");
 
     return (
         <section className="bg-bg-elevated relative">
@@ -14,7 +15,7 @@ export default function ContactMap() {
                 <div className="p-12 md:p-16 lg:p-24 flex flex-col justify-center order-2 lg:order-1">
                     <div className="max-w-md mx-auto lg:mx-0 w-full">
                         <h2 className="font-heading text-4xl md:text-5xl font-bold text-text-primary mb-10">
-                            Наши контакты
+                            {t("breadcrumbContacts")}
                         </h2>
 
                         <div className="space-y-8 mb-12">
@@ -24,7 +25,7 @@ export default function ContactMap() {
                                     <MapPin className="w-5 h-5 text-accent-blue" />
                                 </div>
                                 <div>
-                                    <h4 className="text-sm font-medium text-text-muted uppercase mb-1 tracking-wider">Главный офис</h4>
+                                    <h4 className="text-sm font-medium text-text-muted uppercase mb-1 tracking-wider">{t("mainOffice")}</h4>
                                     <p className="text-text-primary text-lg">{c("addressMain")}</p>
                                 </div>
                             </div>
@@ -35,7 +36,7 @@ export default function ContactMap() {
                                     <Phone className="w-5 h-5 text-accent-blue" />
                                 </div>
                                 <div>
-                                    <h4 className="text-sm font-medium text-text-muted uppercase mb-1 tracking-wider">Телефон</h4>
+                                    <h4 className="text-sm font-medium text-text-muted uppercase mb-1 tracking-wider">{t("phoneTitle")}</h4>
                                     <a href={`tel:${c("phone").replace(/\s/g, '')}`} className="text-text-primary text-lg font-bold hover:text-accent-blue transition-colors">
                                         {c("phone")}
                                     </a>
@@ -67,7 +68,7 @@ export default function ContactMap() {
                         height="100%"
                         frameBorder="0"
                         className="w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
-                        title="Офис ZAK Trans"
+                        title={t("mainOffice")}
                         loading="lazy"
                     ></iframe>
                 </div>

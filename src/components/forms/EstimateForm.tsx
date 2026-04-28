@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslations } from "next-intl";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Loader2 } from "lucide-react";
@@ -38,21 +39,23 @@ const formatKzPhone = (value: string): string => {
 
 const stripPhone = (value: string): string => value.replace(/\D/g, "");
 
-const formSchema = z.object({
-    name: z.string().min(2, "Введите корректное имя или название компании"),
+const createFormSchema = (t: (key: string) => string) => z.object({
+    name: z.string().min(2, t("validationName")),
     phone: z.string()
         .transform(stripPhone)
-        .pipe(z.string().regex(/^7\d{10}$/, "Введите корректный номер (11 цифр, начиная с 7)")),
-    email: z.string().email("Введите корректный email-адрес"),
-    serviceType: z.string().min(1, "Выберите вид работ"),
-    location: z.string().min(1, "Выберите локацию"),
+        .pipe(z.string().regex(/^7\d{10}$/, t("validationPhone"))),
+    email: z.string().email(t("validationEmail")),
+    serviceType: z.string().min(1, t("validationServiceType")),
+    location: z.string().min(1, t("validationLocation")),
     comment: z.string().optional(),
     agreement: z.boolean().refine((val) => val === true, {
-        message: "Необходимо согласие с политикой конфиденциальности",
+        message: t("validationAgreement"),
     }),
 });
 
 export default function EstimateForm() {
+    const t = useTranslations("formLabels");
+    const formSchema = createFormSchema(t);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
@@ -107,9 +110,9 @@ export default function EstimateForm() {
                     name="name"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Имя / Компания *</FormLabel>
+                            <FormLabel>{t("nameLabel")}</FormLabel>
                             <FormControl>
-                                <Input placeholder="Например, ТОО «СтройСервис»" {...field} />
+                                <Input placeholder={t("namePlaceholder")} {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -122,7 +125,7 @@ export default function EstimateForm() {
                         name="phone"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Телефон *</FormLabel>
+                                <FormLabel>{t("phoneLabel")}</FormLabel>
                                 <FormControl>
                                     <Input
                                         placeholder="+7 (700) 101-06-60"
@@ -149,7 +152,7 @@ export default function EstimateForm() {
                         name="email"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Email *</FormLabel>
+                                <FormLabel>{t("emailLabel")}</FormLabel>
                                 <FormControl>
                                     <Input placeholder="info@company.kz" {...field} />
                                 </FormControl>
@@ -165,21 +168,21 @@ export default function EstimateForm() {
                         name="serviceType"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Вид работ *</FormLabel>
+                                <FormLabel>{t("serviceTypeLabel")}</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                                     <FormControl>
                                         <SelectTrigger>
-                                            <SelectValue placeholder="Выберите из списка" />
+                                            <SelectValue placeholder={t("serviceTypePlaceholder")} />
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        <SelectItem value="plumbing">Сантехнические системы</SelectItem>
-                                        <SelectItem value="welding">Сварочные работы</SelectItem>
-                                        <SelectItem value="turnkey">Строительство «под ключ»</SelectItem>
-                                        <SelectItem value="roads">Строительство дорог</SelectItem>
-                                        <SelectItem value="rvs">Строительство РВС</SelectItem>
-                                        <SelectItem value="pipelines">Строительство нефтепроводов</SelectItem>
-                                        <SelectItem value="multiple">Несколько видов работ</SelectItem>
+                                        <SelectItem value="plumbing">{t("optionPlumbing")}</SelectItem>
+                                        <SelectItem value="welding">{t("optionWelding")}</SelectItem>
+                                        <SelectItem value="turnkey">{t("optionTurnkey")}</SelectItem>
+                                        <SelectItem value="roads">{t("optionRoads")}</SelectItem>
+                                        <SelectItem value="rvs">{t("optionRvs")}</SelectItem>
+                                        <SelectItem value="pipelines">{t("optionPipelines")}</SelectItem>
+                                        <SelectItem value="multiple">{t("optionMultiple")}</SelectItem>
                                     </SelectContent>
                                 </Select>
                                 <FormMessage />
@@ -191,18 +194,18 @@ export default function EstimateForm() {
                         name="location"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Локация *</FormLabel>
+                                <FormLabel>{t("locationLabel")}</FormLabel>
                                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                                     <FormControl>
                                         <SelectTrigger>
-                                            <SelectValue placeholder="Укажите локацию объекта" />
+                                            <SelectValue placeholder={t("locationPlaceholder")} />
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
-                                        <SelectItem value="atyrau">Атырау</SelectItem>
-                                        <SelectItem value="tengiz">Тенгиз</SelectItem>
-                                        <SelectItem value="kulsary">Кульсары</SelectItem>
-                                        <SelectItem value="other">Другое месторождение</SelectItem>
+                                        <SelectItem value="atyrau">{t("locationAtyrau")}</SelectItem>
+                                        <SelectItem value="tengiz">{t("locationTengiz")}</SelectItem>
+                                        <SelectItem value="kulsary">{t("locationKulsary")}</SelectItem>
+                                        <SelectItem value="other">{t("locationOther")}</SelectItem>
                                     </SelectContent>
                                 </Select>
                                 <FormMessage />
@@ -216,10 +219,10 @@ export default function EstimateForm() {
                     name="comment"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Комментарий к задаче (опционально)</FormLabel>
+                            <FormLabel>{t("commentLabel")}</FormLabel>
                             <FormControl>
                                 <Textarea
-                                    placeholder="Опишите объемы, сроки или другие важные детали..."
+                                    placeholder={t("commentPlaceholder")}
                                     className="resize-none h-24"
                                     {...field}
                                 />
@@ -244,7 +247,7 @@ export default function EstimateForm() {
                             </FormControl>
                             <div className="space-y-1 leading-none">
                                 <label htmlFor="agreement" className="text-sm font-normal text-text-secondary cursor-pointer leading-relaxed">
-                                    Я согласен(на) на обработку персональных данных и принимаю условия <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-accent-blue hover:underline" onClick={(e) => e.stopPropagation()}>политики конфиденциальности</a>.
+                                    {t("agreementText")} <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-accent-blue hover:underline" onClick={(e) => e.stopPropagation()}>{t("privacyLink")}</a>.
                                 </label>
                                 <FormMessage />
                             </div>
@@ -260,21 +263,21 @@ export default function EstimateForm() {
                     {isSubmitting ? (
                         <span className="flex items-center justify-center gap-2">
                             <Loader2 className="w-5 h-5 animate-spin" />
-                            Отправка...
+                            {t("submitting")}
                         </span>
                     ) : (
-                        "Отправить заявку"
+                        t("submitButton")
                     )}
                 </Button>
 
                 {submitStatus === "success" && (
                     <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-xl text-green-400 text-sm text-center">
-                        Заявка успешно отправлена! Мы свяжемся с вами в течение 2 часов.
+                        {t("successMessage")}
                     </div>
                 )}
                 {submitStatus === "error" && (
                     <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm text-center">
-                        Ошибка отправки. Попробуйте ещё раз или позвоните нам: +7 700 101 0660
+                        {t("errorMessage")}
                     </div>
                 )}
             </form>

@@ -6,13 +6,13 @@ import { Shield, ArrowRight, ShieldCheck, UserCheck, SearchCheck, FileBadge } fr
 import { motion } from "framer-motion";
 
 export default function HseBlock() {
-    const t = useTranslations("nav");
+    const t = useTranslations("homeHse");
 
     const principles = [
-        { icon: ShieldCheck, text: "Обязательный инструктаж на объекте" },
-        { icon: UserCheck, text: "Допуск только аттестованных специалистов" },
-        { icon: SearchCheck, text: "Многоуровневый контроль на каждом этапе" },
-        { icon: FileBadge, text: "Документация по международным стандартам" },
+        { icon: ShieldCheck, text: t("principle1") },
+        { icon: UserCheck, text: t("principle2") },
+        { icon: SearchCheck, text: t("principle3") },
+        { icon: FileBadge, text: t("principle4") },
     ];
 
     return (
@@ -26,10 +26,10 @@ export default function HseBlock() {
                             <Shield className="w-6 h-6 text-accent-blue" />
                         </div>
                         <h2 className="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-4">
-                            HSE / Охрана труда и безопасность
+                            {t("title")}
                         </h2>
                         <p className="text-text-secondary leading-relaxed">
-                            Мы строго соблюдаем международные стандарты безопасности, защищая жизнь и здоровье сотрудников, а также минимизируя воздействие на окружающую среду.
+                            {t("description")}
                         </p>
                     </div>
 
@@ -56,7 +56,7 @@ export default function HseBlock() {
                     {/* Right: CTA */}
                     <div className="w-full lg:w-1/4 flex lg:justify-end">
                         <Link href="/hse" className="w-full lg:w-auto flex justify-center items-center bg-transparent border border-accent-blue/30 text-accent-blue hover:bg-accent-blue hover:text-white px-8 py-4 rounded-full font-medium transition-all group whitespace-nowrap">
-                            Узнать подробнее
+                            {t("learnMore")}
                             <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
                         </Link>
                     </div>

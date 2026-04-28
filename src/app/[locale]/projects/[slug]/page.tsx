@@ -1,4 +1,4 @@
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -20,10 +20,11 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string, locale: string }> }): Promise<Metadata> {
     const { slug, locale } = await params;
     const project = PROJECTS.find((p) => p.slug === slug);
-    if (!project) return { title: "Проект не найден" };
+    const t = await getTranslations({ locale, namespace: "projectDetail" });
+    if (!project) return { title: t("notFoundMeta") };
 
     return {
-        title: `${project.title} | Проекты ZAK Trans`,
+        title: `${project.title} | ${t("metaTitleSuffix")}`,
         description: project.description.slice(0, 150) + "...",
     };
 }
@@ -37,6 +38,8 @@ export default async function ProjectPage({
     const { slug, locale } = await params;
     setRequestLocale(locale);
 
+    const t = await getTranslations({ locale, namespace: "projectDetail" });
+
     const project = PROJECTS.find((p) => p.slug === slug);
 
     if (!project) {
@@ -44,19 +47,19 @@ export default async function ProjectPage({
     }
 
     const categoryLabels: Record<string, string> = {
-        roads: "Дороги",
-        rvs: "РВС",
-        pipelines: "Нефтепроводы",
-        construction: "Строительство",
-        welding: "Сварка",
-        plumbing: "Сантехника"
+        roads: t("categoryRoads"),
+        rvs: t("categoryRvs"),
+        pipelines: t("categoryPipelines"),
+        construction: t("categoryConstruction"),
+        welding: t("categoryWelding"),
+        plumbing: t("categoryPlumbing"),
     };
 
     const locLabels: Record<string, string> = {
-        atyrau: "Атырау",
-        tengiz: "Тенгиз",
-        kulsary: "Кульсары",
-        other: "Другое"
+        atyrau: t("locationAtyrau"),
+        tengiz: t("locationTengiz"),
+        kulsary: t("locationKulsary"),
+        other: t("locationOther"),
     };
 
     return (
@@ -77,9 +80,9 @@ export default async function ProjectPage({
 
                 <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 pb-16 md:pb-20">
                     <nav className="flex items-center text-sm font-medium text-text-muted mb-6">
-                        <Link href="/" className="hover:text-accent-blue transition-colors">Главная</Link>
+                        <Link href="/" className="hover:text-accent-blue transition-colors">{t("breadcrumbHome")}</Link>
                         <ChevronRight className="w-4 h-4 mx-2" />
-                        <Link href="/projects" className="hover:text-accent-blue transition-colors">Проекты</Link>
+                        <Link href="/projects" className="hover:text-accent-blue transition-colors">{t("breadcrumbProjects")}</Link>
                         <ChevronRight className="w-4 h-4 mx-2" />
                         <span className="text-text-primary hidden sm:inline">{project.title.slice(0, 40)}{project.title.length > 40 ? '...' : ''}</span>
                     </nav>
@@ -89,7 +92,7 @@ export default async function ProjectPage({
                             {categoryLabels[project.category]}
                         </span>
                         <span className="px-3 py-1 bg-steel text-text-primary border border-border rounded-full text-sm font-medium">
-                            {project.year} год
+                            {project.year} {t("yearSuffix")}
                         </span>
                     </div>
 
@@ -106,12 +109,12 @@ export default async function ProjectPage({
                     {/* Main Content Column */}
                     <div className="lg:w-2/3">
                         <div className="prose prose-invert max-w-none">
-                            <h2 className="text-2xl font-bold text-text-primary mb-6 font-heading">О проекте</h2>
+                            <h2 className="text-2xl font-bold text-text-primary mb-6 font-heading">{t("aboutProject")}</h2>
                             <p className="text-lg text-text-secondary leading-relaxed mb-12">
                                 {project.description}
                             </p>
 
-                            <h2 className="text-2xl font-bold text-text-primary mb-6 font-heading">Выполненные работы</h2>
+                            <h2 className="text-2xl font-bold text-text-primary mb-6 font-heading">{t("worksDone")}</h2>
                             <div className="space-y-4 mb-12">
                                 {project.worksDone.map((work, i) => (
                                     <div key={i} className="flex items-start space-x-3">
@@ -121,7 +124,7 @@ export default async function ProjectPage({
                                 ))}
                             </div>
 
-                            <h2 className="text-2xl font-bold text-text-primary mb-6 font-heading">Результат</h2>
+                            <h2 className="text-2xl font-bold text-text-primary mb-6 font-heading">{t("result")}</h2>
                             <div className="p-6 bg-bg-elevated border-l-4 border-l-accent-blue rounded-r-2xl border-y border-r border-border mb-12">
                                 <p className="text-text-primary font-medium text-lg leading-relaxed">
                                     {project.result}
@@ -131,13 +134,13 @@ export default async function ProjectPage({
                             {/* Photo Gallery */}
                             {project.gallery.length > 0 && (
                                 <>
-                                    <h2 className="text-2xl font-bold text-text-primary mb-6 font-heading">Фотогалерея</h2>
+                                    <h2 className="text-2xl font-bold text-text-primary mb-6 font-heading">{t("gallery")}</h2>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
                                         {project.gallery.map((img, i) => (
                                             <div key={i} className="relative aspect-video rounded-xl overflow-hidden border border-border bg-steel">
                                                 <Image
                                                     src={img}
-                                                    alt={`${project.title} - фото ${i + 1}`}
+                                                    alt={`${project.title} - ${t("photoAlt")} ${i + 1}`}
                                                     fill
                                                     className="object-cover hover:scale-105 transition-transform duration-500 cursor-pointer"
                                                 />
@@ -167,27 +170,27 @@ export default async function ProjectPage({
 
                             {/* Meta Card */}
                             <div className="bg-bg-secondary border border-border rounded-2xl p-6 sm:p-8">
-                                <h3 className="font-heading text-xl font-bold text-text-primary mb-6">Детали проекта</h3>
+                                <h3 className="font-heading text-xl font-bold text-text-primary mb-6">{t("detailsTitle")}</h3>
 
                                 <div className="space-y-6">
                                     <div className="flex items-start space-x-4">
                                         <MapPin className="w-5 h-5 text-text-muted shrink-0 mt-0.5" />
                                         <div>
-                                            <div className="text-sm font-medium text-text-muted uppercase tracking-wider mb-1">Локация</div>
+                                            <div className="text-sm font-medium text-text-muted uppercase tracking-wider mb-1">{t("locationLabel")}</div>
                                             <div className="text-text-primary font-medium">{locLabels[project.location]}</div>
                                         </div>
                                     </div>
                                     <div className="flex items-start space-x-4">
                                         <Clock className="w-5 h-5 text-text-muted shrink-0 mt-0.5" />
                                         <div>
-                                            <div className="text-sm font-medium text-text-muted uppercase tracking-wider mb-1">Срок реализации</div>
+                                            <div className="text-sm font-medium text-text-muted uppercase tracking-wider mb-1">{t("durationLabel")}</div>
                                             <div className="text-text-primary font-medium">{project.duration}</div>
                                         </div>
                                     </div>
                                     <div className="flex items-start space-x-4">
                                         <Ruler className="w-5 h-5 text-text-muted shrink-0 mt-0.5" />
                                         <div>
-                                            <div className="text-sm font-medium text-text-muted uppercase tracking-wider mb-1">Объем работ</div>
+                                            <div className="text-sm font-medium text-text-muted uppercase tracking-wider mb-1">{t("volumeLabel")}</div>
                                             <div className="text-text-primary font-medium">{project.volume}</div>
                                         </div>
                                     </div>
@@ -197,16 +200,16 @@ export default async function ProjectPage({
                             {/* CTA Widget */}
                             <div className="bg-gradient-to-br from-bg-elevated to-bg-card border border-border rounded-2xl p-6 sm:p-8 text-center relative overflow-hidden group">
                                 <div className="absolute inset-0 bg-accent-blue/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                <h3 className="font-heading text-xl font-bold text-text-primary mb-3 relative z-10">Нужен похожий проект?</h3>
-                                <p className="text-sm text-text-secondary mb-6 relative z-10">Оставьте заявку, и мы бесплатно рассчитаем стоимость работ для вашего объекта.</p>
+                                <h3 className="font-heading text-xl font-bold text-text-primary mb-3 relative z-10">{t("similarProjectTitle")}</h3>
+                                <p className="text-sm text-text-secondary mb-6 relative z-10">{t("similarProjectDescription")}</p>
                                 <Link href="/about#estimate-form" className="w-full relative z-10 block px-6 py-3 bg-accent-blue hover:bg-accent-blue-hover text-white rounded-lg font-medium text-center transition-colors">
-                                    Запросить смету
+                                    {t("requestEstimate")}
                                 </Link>
                             </div>
 
                             <Link href="/projects" className="inline-flex items-center space-x-2 text-text-secondary hover:text-accent-blue transition-colors font-medium group">
                                 <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                                <span>Вернуться ко всем проектам</span>
+                                <span>{t("backToAll")}</span>
                             </Link>
 
                         </div>
@@ -219,8 +222,8 @@ export default async function ProjectPage({
             <section className="py-20 bg-bg-secondary border-t border-border">
                 <div className="max-w-4xl mx-auto px-4 md:px-8">
                     <div className="text-center mb-10">
-                        <h2 className="font-heading text-3xl font-bold text-text-primary mb-4">Обсудить ваш проект</h2>
-                        <p className="text-text-secondary">Укажите детали, и мы подготовим для вас коммерческое предложение.</p>
+                        <h2 className="font-heading text-3xl font-bold text-text-primary mb-4">{t("discussProject")}</h2>
+                        <p className="text-text-secondary">{t("discussDescription")}</p>
                     </div>
                     <div className="bg-bg-card border border-border rounded-3xl p-6 sm:p-10 shadow-xl">
                         <EstimateForm />

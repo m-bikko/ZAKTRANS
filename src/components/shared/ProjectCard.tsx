@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { ArrowRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Project } from "@/lib/types";
 
 interface ProjectCardProps {
@@ -8,20 +11,22 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
+    const t = useTranslations("shared");
+
     const categoryLabels: Record<string, string> = {
-        roads: "Дороги",
-        rvs: "РВС",
-        pipelines: "Нефтепроводы",
-        construction: "Строительство",
-        welding: "Сварка",
-        plumbing: "Сантехника"
+        roads: t("categoryRoads"),
+        rvs: t("categoryRvs"),
+        pipelines: t("categoryPipelines"),
+        construction: t("categoryConstruction"),
+        welding: t("categoryWelding"),
+        plumbing: t("categoryPlumbing"),
     };
 
     const locLabels: Record<string, string> = {
-        atyrau: "Атырау",
-        tengiz: "Тенгиз",
-        kulsary: "Кульсары",
-        other: "Другое"
+        atyrau: t("locationAtyrau"),
+        tengiz: t("locationTengiz"),
+        kulsary: t("locationKulsary"),
+        other: t("locationOther"),
     };
 
     return (
@@ -61,7 +66,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
                 {/* Hover Action */}
                 <div className="flex items-center text-accent-blue text-sm font-medium opacity-0 translate-y-4 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-                    Подробнее <ArrowRight className="w-4 h-4 ml-2" />
+                    {t("readMore")} <ArrowRight className="w-4 h-4 ml-2" />
                 </div>
             </div>
 
