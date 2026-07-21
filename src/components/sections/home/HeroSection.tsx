@@ -47,16 +47,22 @@ export default function HeroSection() {
                 className="object-cover z-0"
             />
 
-            {/* Gradient Overlay */}
+            {/* Dark Overlay — keeps text readable over the busy photo */}
             <div
                 className="absolute inset-0 z-10"
                 style={{
-                    background: "linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(240,241,241,0.5) 30%, rgba(240,241,241,0.88) 70%, #F0F1F1 100%)"
+                    background: "linear-gradient(100deg, rgba(9,19,27,0.94) 0%, rgba(11,24,33,0.86) 45%, rgba(14,29,40,0.62) 100%)"
+                }}
+            />
+            <div
+                className="absolute inset-0 z-10"
+                style={{
+                    background: "linear-gradient(to bottom, rgba(9,19,27,0.55) 0%, rgba(9,19,27,0) 25%, rgba(9,19,27,0) 70%, rgba(9,19,27,0.65) 100%)"
                 }}
             />
 
             {/* Grid Pattern Layer */}
-            <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none z-[15]" />
+            <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,#ffffff0d_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0d_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none z-[15]" />
 
             {/* Blue Vignette */}
             <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent-blue to-transparent z-10 opacity-50" />
@@ -71,14 +77,14 @@ export default function HeroSection() {
                 >
                     {/* Left Side: Copy & CTAs */}
                     <div className="w-full lg:w-[60%] flex flex-col items-start text-left">
-                        <motion.div variants={itemVariants} className="flex items-center space-x-2 bg-white/90 backdrop-blur-sm border border-accent-blue/30 rounded-full px-4 py-1.5 mb-6 shadow-sm">
+                        <motion.div variants={itemVariants} className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm border border-accent-blue/40 rounded-full px-4 py-1.5 mb-6 shadow-sm">
                             <span className="w-2 h-2 rounded-full bg-accent-blue animate-pulse-blue" />
                             <span className="text-xs md:text-sm text-accent-blue uppercase tracking-wider font-bold">
                                 {t("subtitle")}
                             </span>
                         </motion.div>
 
-                        <motion.h1 variants={itemVariants} className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-text-primary">
+                        <motion.h1 variants={itemVariants} className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-white">
                             {t("title").split(" для").map((part, i) => (
                                 <span key={i}>
                                     {i === 0 ? part : ` для${part}`}
@@ -87,7 +93,7 @@ export default function HeroSection() {
                             ))}
                         </motion.h1>
 
-                        <motion.p variants={itemVariants} className="text-lg md:text-xl text-text-primary/80 mt-6 max-w-2xl leading-relaxed font-medium">
+                        <motion.p variants={itemVariants} className="text-lg md:text-xl text-white/85 mt-6 max-w-2xl leading-relaxed font-medium">
                             {th("descriptionText")}
                         </motion.p>
 
@@ -96,7 +102,7 @@ export default function HeroSection() {
                                 {cta("estimate")}
                                 <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
                             </button>
-                            <button className="bg-white/80 backdrop-blur-sm border border-border hover:border-accent-blue text-text-primary px-8 py-4 rounded-full font-medium transition-all">
+                            <button className="bg-white/10 backdrop-blur-sm border border-white/30 hover:border-accent-blue hover:bg-white/15 text-white px-8 py-4 rounded-full font-medium transition-all">
                                 {cta("quote")}
                             </button>
                         </motion.div>
@@ -127,7 +133,7 @@ export default function HeroSection() {
 
             {/* Scroll Down Indicator */}
             <motion.div
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center cursor-pointer text-text-muted hover:text-text-primary transition-colors"
+                className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center cursor-pointer text-white/60 hover:text-white transition-colors"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.5, duration: 1 }}
